@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
 import Image from "next/image";
-import mentee from "../assets/mentee.png";
+// import mentee from "../assets/mentee.png";
 import { TokenContext } from "../utils/context";
 import CustomButton from "./CustomButton";
 import { useRouter } from "next/router";
@@ -56,12 +56,12 @@ export default function Header() {
             </button>
             <button type="button">
               <div className="mr-3" onClick={handleModal}>
-                <Image
+                {/* <Image
                   src={mentee}
                   alt="Picture of the author"
                   width={30}
                   height={30}
-                />
+                /> */}
               </div>
             </button>
           </div>
