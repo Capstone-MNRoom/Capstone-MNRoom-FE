@@ -12,12 +12,8 @@ export default function Footer() {
   return (
     <div className='bg-sky-900 sm:text-left'>
       <div className="container">
-        <div className="row text-white ml-6">
-          <div className='col-3 w-40'>
-            <Image src={Logo}/>
-          </div>
-          <br/>
-          <div className="col-3 ">
+        <div className="row text-white ml-2 pl-16">
+          <div className="col-3">
             <h3 className='font-bold'>MN Room</h3>
             <br/>
             <p className="text-sm">A web-based application that provides<br />a room loan at an affordable rental<br />price.</p>
@@ -43,6 +39,10 @@ export default function Footer() {
             <p className="text-sm "> <HomeIcon /> Jl. Raya Tidar No. 23, Kota Malang</p>
             <p className="text-sm pt-2.5"> <EmailIcon /> main@gmail.com</p>
             <p className="text-sm pt-2.5"> <CallIcon /> 0341-455667</p>
+          </div>
+          <br/>
+          <div className='col-3 w-40'>
+            <Image src={Logo}/>
           </div>
         </div>
       </div>
