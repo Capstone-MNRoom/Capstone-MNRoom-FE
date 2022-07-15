@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "./Footer";
-// import Header from "./Header";
+import Header from "./Header";
 import Head from "next/head";
 // import Link from "next/link";
 
@@ -13,7 +13,7 @@ export default function Layout(props) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     </Head>
 
-      {/* <Header /> */}
+      <Header />
       {props.children}
       <Footer/>
     </>
