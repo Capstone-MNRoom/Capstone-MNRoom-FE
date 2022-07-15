@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import Image from "next/image";
 // import mentee from "../assets/mentee.png";
 import { TokenContext } from "../utils/context";
-import CustomButton from "./CustomButton";
+import Button from "../components/button";
 import { useRouter } from "next/router";
 
 export default function Header() {
@@ -31,30 +31,30 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 w-full px-2 py-2.5 bg-black flex justify-between drop-shadow-2xl z-10">
-        <div className="flex items-center font-bold text-2xl text-white">
+      <nav className="sticky top-0 w-full px-2 py-2.5 bg-white flex justify-between drop-shadow-2xl z-10">
+        <div className="flex items-center font-bold text-2xl text-black">
           <Link id="to-homepage" href="/">
-            GOMEET
+            MN Room
           </Link>
         </div>
         {token === "0" && (
-          <div className="flex">
-            <button className="bg-white text-pink-700 mr-2 py-1 px-3">
+          <div className="flex rounded">
+            <Button className="bg-sky-900 hover:bg-sky-600 text-white rounded mr-2 py-1 px-3" label='Login'>
               <Link href="/login">Login</Link>
-            </button>
-            <button className="bg-white text-pink-700 mr-2 py-1 px-3">
+            </Button>
+            <Button className="bg-sky-900 hover:bg-sky-600 text-white rounded mr-2 py-1 px-3" label='Register'>
               <Link href="/register">Register</Link>
-            </button>
+            </Button>
           </div>
         )}
         {token !== "0" && (
           <div className="flex flex-row items-center justify-center ">
-            <button type="button">
+            <Button type="button">
               <div className="text-white mr-3" onClick={handleCreate}>
                 <FaPlus />
               </div>
-            </button>
-            <button type="button">
+            </Button>
+            <Button type="button">
               <div className="mr-3" onClick={handleModal}>
                 {/* <Image
                   src={mentee}
@@ -63,17 +63,17 @@ export default function Header() {
                   height={30}
                 /> */}
               </div>
-            </button>
+            </Button>
           </div>
         )}
       </nav>
       {showModal && (
         <div
           id="dropdownDivider"
-          className="z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute right-7 top-16"
+          className="z-10 bg-sky-900 divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute right-7 top-16"
         >
           <ul
-            className="py-1 text-sm text-gray-700 dark:text-gray-200"
+            className="py-1 text-sm text-white dark:text-black"
             aria-labelledby="dropdownDividerButton"
           >
             <li>
