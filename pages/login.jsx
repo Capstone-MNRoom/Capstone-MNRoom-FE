@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
+import { TokenContext } from "../utils/context";
 
 import Image from "next/image";
 import LOGO from "../assets/logo.png";
@@ -6,8 +9,55 @@ import Input from "../components/input";
 import Button from "../components/Button";
 
 export default function Login() {
+  const router = useRouter();
+  const { token, setToken } = useContext(TokenContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (!token === "0") {
+      router.push("/");
+    }
+    if (email && password) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [token, email, password]);
+
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    const body = {
+      email,
+      password,
+    };
+
+    var requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    };
+
+    fetch("https://mnroom.capstone.my.id/login", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { message, data, token } = result;
+        if (message === "success") {
+          localStorage.setItem("token", token);
+          setToken(token);
+          router.push("/");
+        }
+        alert(message);
+      })
+      .catch((err) => {
+        alert(err.toString());
+      })
+      .finally(() => setLoading(false));
+  };
 
   return (
     <div className="h-screen flex justify-center">
