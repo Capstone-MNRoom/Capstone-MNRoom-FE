@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomButton from '../components/CustomButton';
+import Button from '../components/button';
 import Layout from '../components/Layout';
 
 function ConfirmPayment() {
@@ -39,11 +39,11 @@ function ConfirmPayment() {
                     </div>
 
                     <div className='pt-8 flex justify-end pr-20'>
-                        <CustomButton
+                        <Button
                             id="btn-confirm-payment"
                             label="Confirm"
                             // loading={loading || disabled}
-                            className={'bg-[#F97316] text-white font-bold py-2 px-14 rounded-lg'}
+                            className={'bg-[#F97316] text-white font-bold py-2 px-14 border border-white rounded-lg shadow-md shadow-gray-300'}
                         />
                     </div>
 
