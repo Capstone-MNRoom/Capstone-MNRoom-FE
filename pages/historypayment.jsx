@@ -2,14 +2,14 @@ import React, { useState } from "react";
 
 import Layaout from "../components/Layout";
 import DoneOutlineRoundedIcon from "@mui/icons-material/DoneOutlineRounded";
-import CustomButton from "../components/CustomButton";
+import Button from "../components/button";
 
 function Historypayment() {
   const [loading, setLoading] = useState(false);
   return (
     <Layaout>
       <div className="mb-auto">
-        <div className="text-center text-[#085E7D] text-5xl p-12 w-full">
+        <div className="text-center text-[#085E7D] text-5xl p-20 w-full">
           History Payment
         </div>
         <div className="w-full overflow-auto text-[#085E7D] font-bold flex justify-evenly">
@@ -38,7 +38,7 @@ function Historypayment() {
           <div>
             <div className=" flex flex-col items-center p-16">
               <DoneOutlineRoundedIcon />
-              <CustomButton
+              <Button
                 label="feedback"
                 className="bg-orange-500 rounded-md text-white px-8 py-1 mt-8"
               />
