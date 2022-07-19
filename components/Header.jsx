@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
 import Image from "next/image";
-// import mentee from "../assets/mentee.png";
+import LOGO from "../assets/logo.png";
 import { TokenContext } from "../utils/context";
 import Button from "../components/button";
 import { useRouter } from "next/router";
@@ -39,10 +39,16 @@ export default function Header() {
         </div>
         {token === "0" && (
           <div className="flex rounded">
-            <Button className="bg-sky-900 hover:bg-sky-600 text-white rounded mr-2 py-1 px-3" label='Login'>
+            <Button
+              className="bg-sky-900 hover:bg-sky-600 text-white rounded mr-2 py-1 px-3"
+              label="Login"
+            >
               <Link href="/login">Login</Link>
             </Button>
-            <Button className="bg-sky-900 hover:bg-sky-600 text-white rounded mr-2 py-1 px-3" label='Register'>
+            <Button
+              className="bg-sky-900 hover:bg-sky-600 text-white rounded mr-2 py-1 px-3"
+              label="Register"
+            >
               <Link href="/register">Register</Link>
             </Button>
           </div>
@@ -56,12 +62,12 @@ export default function Header() {
             </Button>
             <Button type="button">
               <div className="mr-3" onClick={handleModal}>
-                {/* <Image
-                  src={mentee}
+                <Image
+                  src={LOGO}
                   alt="Picture of the author"
                   width={30}
                   height={30}
-                /> */}
+                />
               </div>
             </Button>
           </div>

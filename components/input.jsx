@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 const Input = (props) => {
   return (
     // <div className="flex flex-col gap-1">
+    <>
       <TextField
         id={props.id}
         type={props.type}
@@ -12,8 +13,9 @@ const Input = (props) => {
         className={props.className}
         onChange={props.onChange}
         value={props.value}
-        InputLabelProps={{ shrink: true }}
+        // InputLabelProps={{ shrink: true }}
       />
+    </>
   );
 };
 
