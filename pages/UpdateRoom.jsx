@@ -13,7 +13,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 
-function UpdateRoom() {
+function updateroom() {
     const [loading, setLoading] = useState(false);
     const [disabled, setDisabled] = useState(true);
 
@@ -165,4 +165,4 @@ function UpdateRoom() {
     )
 }
 
-export default UpdateRoom
+export default updateroom

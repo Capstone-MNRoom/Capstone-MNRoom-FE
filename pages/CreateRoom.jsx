@@ -32,7 +32,7 @@ const facilities = [
     'Proyektor',
 ];
 
-function CreateRoom() {
+function createroom() {
     const [loading, setLoading] = useState(false);
     const [disabled, setDisabled] = useState(true);
 
@@ -202,4 +202,4 @@ function CreateRoom() {
     )
 }
 
-export default CreateRoom
+export default createroom

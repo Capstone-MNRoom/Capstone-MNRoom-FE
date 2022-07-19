@@ -10,7 +10,7 @@ import NotificationImportantIcon from '@mui/icons-material/NotificationImportant
 
 
 
-function Terms() {
+function terms() {
     return (
         <Layout>
             <div className='text-4xl text-[#F97316] flex justify-center font-bold my-16'>Aturan yang Harus Dipatuhi</div>
@@ -41,4 +41,4 @@ function Terms() {
     )
 }
 
-export default Terms
+export default terms
