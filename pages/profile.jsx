@@ -121,8 +121,7 @@ const Profile = () => {
                                             className="text-white form w-full input pb-2"
                                             onChange={(e) => handleName(e)}
                                             label="Name"
-                                            // value={Name}
-                                            placeholder="Name"
+                                            value={name}
                                             onKeyDown={(e) => callSubmit(e)}
                                         >
                                             Name
@@ -133,9 +132,8 @@ const Profile = () => {
                                         <Input
                                             className="text-white form w-full input pb-2"
                                             onChange={(e) => handleEmail(e)}
-                                            label="email"
+                                            label="E-mail"
                                             value={email}
-                                            placeholder="Email"
                                             onKeyDown={(e) => callSubmit(e)}
                                         >
                                             Email
@@ -146,9 +144,8 @@ const Profile = () => {
                                         <Input
                                             className="text-white form w-full input pb-2"
                                             onChange={(e) => handlePhone(e)}
-                                            label="phone"
+                                            label="Phone"
                                             value={phone}
-                                            placeholder="Phone"
                                             onKeyDown={(e) => callSubmit(e)}
                                         >
                                             Phone Number
@@ -159,9 +156,8 @@ const Profile = () => {
                                         <Input
                                             className="text-white form w-full input pb-2"
                                             onChange={(e) => handleAddress(e)}
-                                            label="address"
+                                            label="Address"
                                             value={address}
-                                            placeholder="Address"
                                             onKeyDown={(e) => callSubmit(e)}
                                         >
                                             Address

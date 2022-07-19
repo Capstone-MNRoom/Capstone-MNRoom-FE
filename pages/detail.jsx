@@ -1,50 +1,137 @@
-import Layout from '../components/Layout'
-import React, { Component } from 'react'
-import PlaceIcon from '@mui/icons-material/Place';
-import Image from 'next/image'
-import { useState } from 'react'
-import Photo from '../assets/detail-photo.png'
-import SellIcon from '@mui/icons-material/Sell';
-import PersonIcon from '@mui/icons-material/Person';
-import TextField from '@mui/material/TextField';
+import React, { Component, useEffect, useRef } from 'react';
+import { useState, useContext } from 'react';
+import { TokenContext } from '../utils/context';
+import { useRouter } from 'next/router';
+import Layout from '../components/Layout';
+import Image from 'next/image';
+
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import ChairIcon from '@mui/icons-material/Chair';
 import TableRestaurantIcon from '@mui/icons-material/TableRestaurant';
-import CastIcon from '@mui/icons-material/Cast';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import WifiIcon from '@mui/icons-material/Wifi';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import PersonIcon from '@mui/icons-material/Person';
+import PlaceIcon from '@mui/icons-material/Place';
+import ChairIcon from '@mui/icons-material/Chair';
+import StarIcon from '@mui/icons-material/Star';
+import SellIcon from '@mui/icons-material/Sell';
+import TextField from '@mui/material/TextField';
+import CastIcon from '@mui/icons-material/Cast';
+import WifiIcon from '@mui/icons-material/Wifi';
+import Photo from '../assets/detail-photo.png';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
-import StarIcon from '@mui/icons-material/Star';
 
 
 const Detail = () => {
 
+  const { token } = useContext(TokenContext);
+  const router = useRouter();
+
+  const ref = useRef(null);
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState('');
+  const [facility, setFacility] = useState([]);
+  const [feedback, setFeedback] = useState([]);
+  const [date, setDate] = useState('');
+  const [wrongInput, setWrongInput] = useState("");
+
   const [value, setValue] = useState(new Date());
 
-  const labels = {
-    0.5: 'Useless',
-    1: 'Useless+',
-    1.5: 'Poor',
-    2: 'Poor+',
-    2.5: 'Ok',
-    3: 'Ok+',
-    3.5: 'Good',
-    4: 'Good+',
-    4.5: 'Excellent',
-    5: 'Excellent+',
-  };
+  useEffect(() => {
+    fetchdetail();
+  }, []);
 
- const getLabelText = (value) => {
+  // get data detail from server
+  const fetchdetail = (id) => {
+    let myHeaders = new Headers();
+    myHeaders.append(`Authorization`, `Bearer ${token}`);
+
+    let requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    fetch(`https://mnroom.capstone.my.id/rooms/${id}`, requestOptions)
+      .then(response => response.json())
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch((error) => {
+        if (error.status === 400) {
+          navigate(`/detail/${id}/Not Found`);
+        }
+      })
+      .finally(() => setFacility([]));
+  }
+
+  //get date from server
+
+  // get facility from server
+  const fetchfacility = (id) => {
+    let myHeaders = new Headers();
+    myHeaders.append(`Authorization`, `Bearer ${token}`);
+
+    let requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    fetch(`https://mnroom.capstone.my.id/rooms/${id}/facility`, requestOptions)
+      .then(response => response.json())
+      .then((result) => {
+        setFacility(result.data);
+      })
+      .catch((error) => {
+        if (error.status === 400) {
+          navigate(`/detail/${id}/Not Found`);
+        }
+      })
+      .finally(() => setFeedback([]));
+  }
+
+  // get feedback from server
+  // const fetchfeedback = (id) => {
+  //   let myHeaders = new Headers();
+  //   myHeaders.append(`Authorization`, `Bearer ${token}`);
+
+  //   let requestOptions = {
+  //     method: 'GET',
+  //     headers: myHeaders,
+  //     redirect: 'follow'
+  //   };
+
+  //   fetch(`https://mnroom.capstone.my.id/rooms/${id}/feedbacks`, requestOptions)
+  //     .then(response => response.json())
+  //     .then((result) => {
+  //       setFeedback(result.data);
+  //     }).catch((error) => {
+  //       if (error.status === 400) {
+  //         navigate(`/detail/${id}/Not Found`);
+  //       }
+  //     }).finally(() => setLoading(false));
+  // }
+
+  // post order by id
+  const handleOrder = () => { }
+
+
+
+  const getLabelText = (value) => {
     return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
   }
-  
+
+
+
+
 
   return (
     <Layout>
