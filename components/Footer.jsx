@@ -37,7 +37,7 @@ export default function Footer() {
             <h3 className='font-bold'>Contact</h3>
             <br/>
             <p className="text-sm "> <HomeIcon /> Jl. Raya Tidar No. 23, Kota Malang</p>
-            <p className="text-sm pt-2.5"> <EmailIcon /> main@gmail.com</p>
+            <p className="text-sm pt-2.5"> <EmailIcon /> mainroom@gmail.com</p>
             <p className="text-sm pt-2.5"> <CallIcon /> 0341-455667</p>
           </div>
           <br/>
@@ -48,7 +48,7 @@ export default function Footer() {
       </div>
       <hr />
       <div className="bg-white text-black text-center">
-        <h6>2022 ©Copyright MNroom. All Right Reserved.</h6>
+        <h6>2022 ©Copyright MN Room. All Right Reserved.</h6>
       </div>
     </div>
   );
