@@ -1,32 +1,31 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+
 import PetsIcon from '@mui/icons-material/Pets';
-import NotInterestedIcon from '@mui/icons-material/NotInterested';
 import SmokeFreeIcon from '@mui/icons-material/SmokeFree';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import NotInterestedIcon from '@mui/icons-material/NotInterested';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
 
-
-
-function Terms() {
+const Terms = () => {
     return (
         <Layout>
-            <div className='text-4xl text-[#F97316] flex justify-center font-bold my-16'>Aturan yang Harus Dipatuhi</div>
+            <div className='text-4xl text-[#F97316] flex justify-center font-bold my-16'>Regulation</div>
 
             <div className='grid grid-cols-3 grid-flow-row auto-rows-max gap-16 mx-16 mb-32'>
                 <div className='space-y-1'>
                     <h1 className='font-bold my-3'>Peraturan Ruangan</h1>
-                    <div><AccessTimeFilledIcon className='text-sm mr-2' />Start: Setelah 06.00</div>
-                    <div><AccessTimeFilledIcon className='text-sm mr-2' />End: 23.59</div>
+                    <div><AccessTimeFilledIcon className='text-sm mr-2' />Start: Setelah 06.00 WIB</div>
+                    <div><AccessTimeFilledIcon className='text-sm mr-2' />End: 23.59 WIB</div>
                     <div><MeetingRoomIcon className='text-sm mr-2' />Memasuki ruangan dengan petugas ruangan</div>
                     <div><PetsIcon className='text-sm mr-2' />Hewan peliharaan tidak diizinkan</div>
                     <div><NotInterestedIcon className='text-sm mr-2' />Pesta atau acara diluar kegunaan ruangan tidak diperkenankan</div>
                     <div><SmokeFreeIcon className='text-sm mr-2' />Dilarang merokok</div>
                 </div>
                 <div className='space-y-1'>
-                    <h1 className='font-bold my-3'>Kesehatan & Keselamatan</h1>
+                    <h1 className='font-bold my-3'>Kesehatan dan Keselamatan</h1>
                     <div><AutoAwesomeIcon className='text-sm mr-2' />Menjaga protokol COVID-19</div>
                     <div><NotificationImportantIcon className='text-sm mr-2' />Alarm karbon monoksida</div>
                     <div><NotificationImportantIcon className='text-sm mr-2' />Alarm asap</div>
@@ -41,4 +40,4 @@ function Terms() {
     )
 }
 
-export default Terms
+export default Terms;

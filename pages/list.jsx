@@ -17,34 +17,6 @@ const List = () => {
         title: "Arjuna Room",
         address: "Semarang",
         price: "Rp 2.000.000"
-    },
-    {
-        id: 2,
-        image: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-        title: "Arjuna Room",
-        address: "Semarang",
-        price: "Rp 2.000.000"
-    },
-    {
-        id: 3,
-        image: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-        title: "Arjuna Room",
-        address: "Semarang",
-        price: "Rp 2.000.000"
-    },
-    {
-        id: 4,
-        image: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-        title: "Arjuna Room",
-        address: "Semarang",
-        price: "Rp 2.000.000"
-    },
-    {
-        id: 5,
-        image: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-        title: "Arjuna Room",
-        address: "Semarang",
-        price: "Rp 2.000.000"
     }]);
     const [loading, setLoading] = useState(true);
 
