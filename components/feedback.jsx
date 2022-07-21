@@ -20,8 +20,15 @@ const BasicRating = (props) => {
           setValue(newValue);
         }}
       >{props.controll}</Rating>
-      <Typography component="legend">Read only</Typography>
-      <Rating name="read-only" value={value} readOnly>{props.read}</Rating>
+
+      <div>
+        <p>{props.user.name}</p>
+        <Typography component="legend">Read only</Typography>
+        <Rating name="read-only" value={value} readOnly>{props.rating}</Rating>
+        <p>{props.comment}</p>
+      </div>
     </Box>
   );
 }
+
+export default BasicRating;
