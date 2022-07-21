@@ -6,7 +6,7 @@ import { TokenContext } from "../utils/context";
 import Image from "next/image";
 import LOGO from "../assets/logo.png";
 import Input from "../components/input";
-import Button from "../components/Button";
+import Button from "../components/button";
 
 export default function Login() {
   const router = useRouter();

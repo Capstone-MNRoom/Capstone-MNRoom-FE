@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import LOGO from "../assets/logo.png";
 import Input from "../components/input";
-import Button from "../components/Button";
+import Button from "../components/button";
 
 function Register() {
   const router = useRouter();
@@ -124,7 +124,10 @@ function Register() {
             />
           </div>
           <h1 className="flex justify-center">or</h1>
-          <a href={"/login"} className="underline flex justify-center hover:text-orange-500">
+          <a
+            href={"/login"}
+            className="underline flex justify-center hover:text-orange-500"
+          >
             Login
           </a>
         </form>
