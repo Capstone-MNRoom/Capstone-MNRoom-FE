@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import Image from "next/image";
-import Photo from "../assets/foto-form.png";
-import BCA from "../assets/bca.png";
-import BRI from "../assets/bri.png";
+import Photo from "../../assets/foto-form.png";
+import BCA from "../../assets/bca.png";
+import BRI from "../../assets/bri.png";
 import { useState } from "react";
 import Inputan from "../../components/input";
 
