@@ -15,15 +15,20 @@ const Footer = () => {
 
 
   return (
-    <div className='bg-[#085E7D] sm:text-left'>
+    <div className="bg-[#085E7D] sm:text-left bottom-0">
       <div className="container">
         <div className="row text-white ml-2 pl-16">
           <div className="col-3">
-            {/* <Link href="/homepage"> */}
+            <Link href="http://localhost:3000">
             <h3 className='font-bold'>MN Room</h3>
-            {/* </Link> */}
+            </Link>
             <br />
-            <p className="text-sm">A web-based application that provides<br />a room loan at an affordable rental<br />price.</p>
+            <p className="text-sm">
+              A web-based application that provides
+              <br />a room loan at an affordable rental
+              <br />
+              price.
+            </p>
             <br />
             <div>
               <FacebookIcon />
@@ -32,38 +37,46 @@ const Footer = () => {
             </div>
           </div>
           <div className="col-3">
-            <h3 className='font-bold'>Useful Links</h3>
+            <h3 className="font-bold">Useful Links</h3>
             <br />
-
-            <Link href='/terms'>
+            <Link href='/Terms'>
             <p className="text-sm">Regulation</p>
             </Link>
             <Link href='/profile'>
             <p className="text-sm pt-1">Profile</p>
             </Link>
-            {/* <Link href='/homepage'> */}
+            <Link href='http://localhost:3000'>
             <p className="text-sm pt-1">Workspace</p>
-            {/* </Link>
-            <Link href='/homepage'> */}
+            </Link>
+            <Link href='http://localhost:3000'>
             <p className="text-sm pt-1">Hallroom</p>
-            {/* </Link>
-            <Link href='/homepage'> */}
+            </Link>
+            <Link href='http://localhost:3000'>
             <p className="text-sm pt-1">Ballroom</p>
-            {/* </Link> */}
+            </Link>
           </div>
           <div className="col-3">
-            <h3 className='font-bold'>Contact</h3>
+            <h3 className="font-bold">Contact</h3>
             <br />
-            <p className="text-sm "> <HomeIcon /> Jl. Raya Tidar No. 23, Kota Malang</p>
-            <p className="text-sm pt-2.5"> <EmailIcon /> mainroom@gmail.com</p>
-            <p className="text-sm pt-2.5"> <CallIcon /> 0341-455667</p>
+            <p className="text-sm ">
+              {" "}
+              <HomeIcon /> Jl. Raya Tidar No. 23, Kota Malang
+            </p>
+            <p className="text-sm pt-2.5">
+              {" "}
+              <EmailIcon /> mainroom@gmail.com
+            </p>
+            <p className="text-sm pt-2.5">
+              {" "}
+              <CallIcon /> 0341-455667
+            </p>
           </div>
           <br />
-          {/* <Link href='/homepage'> */}
+          <Link href='http://localhost:3000'>
           <div className='col-3 w-40'>
             <Image src={Logo} />
           </div>
-          {/* </Link> */}
+          </Link>
         </div>
       </div>
       <hr />

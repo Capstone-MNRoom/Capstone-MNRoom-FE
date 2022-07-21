@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../components/button';
 import Layout from '../components/Layout';
 
-function ConfirmPayment() {
+function confirmpayment() {
     return (
         <Layout>
             <div className='text-4xl text-[#F97316] flex justify-center font-bold my-16'>Confirmation Payment</div>
@@ -53,4 +53,4 @@ function ConfirmPayment() {
     )
 }
 
-export default ConfirmPayment
+export default confirmpayment

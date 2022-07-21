@@ -11,14 +11,11 @@ import { useEffect } from 'react';
 
 const List = () => {
 
-    const [data, setData] = useState([{
-        id: 1,
-        image: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-        title: "Arjuna Room",
-        address: "Semarang",
-        price: "Rp 2.000.000"
-    }]);
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { token } = useContext(TokenContext);
+    const [dataImage, setDataImage] = useState([]);
+    const 
 
 
 

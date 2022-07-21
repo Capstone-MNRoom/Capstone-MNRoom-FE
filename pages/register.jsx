@@ -64,57 +64,57 @@ function Register() {
   };
 
   return (
-    <div className="h-screen flex justify-center">
-      <div className="w-full flex flex-col justify-center">
-        <div className="text-center">
+    <div className="h-screen flex lg:flex-row md:flex-row justify-center flex-col overflow-auto">
+      <div className="w-full flex flex-col justify-center mt-28">
+        <div className="text-center mr-6">
           <Image src={LOGO} />
         </div>
-        <p className="text-center text-orange-400 font-bold">
-          Trust is Only for The Chosen People
+        <p className="text-center ml-2 mb-10 text-orange-500 font-bold">
+          'Trust is Only for The Chosen People'
         </p>
       </div>
-      <div className="w-full h-screen overflow-auto flex flex-col justify-center items-center bg-[#085E7D]">
-        <h1 className="font-bold lg:text-5xl md:text-4xl text-3xl text-white pb-14">
+      <div className="w-full h-screen  flex flex-col justify-center items-center bg-[#085E7D] lg:py-0 py-14">
+        <h1 className="font-bold lg:text-5xl md:text-4xl text-3xl text-orange-500 pb-14">
           Sign Up
         </h1>
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="space-y-4 text-white flex flex-col w-1/2"
+          className="space-y-4 text-white flex flex-col lg:w-1/2 w-[80%]"
         >
           <Input
-            className="bg-white/30 w-full"
+            className="bg-white w-full rounded-md"
             type="text"
             label="username"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-            className="bg-white/30 w-full"
+            className="bg-white w-full rounded-md"
             type="email"
             label="email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
-            className="bg-white/30 w-full"
+            className="bg-white w-full rounded-md"
             type="password"
             label="password"
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <Input
-            className="bg-white/30 w-full"
+            className="bg-white w-full rounded-md"
             type="tel"
             label="phone"
             onChange={(e) => setPhone(e.target.value)}
           />
           <Input
-            className="bg-white/30 w-full"
+            className="bg-white w-full rounded-md"
             type="text"
             label="address"
             onChange={(e) => setAddress(e.target.value)}
           />
           <div className="flex justify-center">
             <Button
-              className={`bg-[#E49318] text-white font-bold py-2 w-24 rounded-lg ${
+              className={`bg-orange-500 text-white font-bold py-2 w-24 hover:shadow-md hover:shadow-gray-700 rounded-lg ${
                 loading && "bg-orange-200 cursor-not-allowed"
               }`}
               id="btn-signup"
@@ -124,7 +124,7 @@ function Register() {
             />
           </div>
           <h1 className="flex justify-center">or</h1>
-          <a href={"/login"} className="underline flex justify-center">
+          <a href={"/login"} className="underline flex justify-center hover:text-orange-500">
             Login
           </a>
         </form>

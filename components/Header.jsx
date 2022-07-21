@@ -4,7 +4,6 @@ import { FaPlus } from "react-icons/fa";
 import Image from "next/image";
 import LOGO from "../assets/logo.png";
 import { TokenContext } from "../utils/context";
-import Button from "../components/button";
 import { useRouter } from "next/router";
 
 export default function Header() {
@@ -39,28 +38,28 @@ export default function Header() {
         </div>
         {token === "0" && (
           <div className="flex rounded">
-            <Button
+            <button
               className="bg-sky-900 hover:bg-sky-600 text-white rounded mr-2 py-1 px-3"
               label="Login"
             >
               <Link href="/login">Login</Link>
-            </Button>
-            <Button
+            </button>
+            <button
               className="bg-sky-900 hover:bg-sky-600 text-white rounded mr-2 py-1 px-3"
               label="Register"
             >
               <Link href="/register">Register</Link>
-            </Button>
+            </button>
           </div>
         )}
         {token !== "0" && (
           <div className="flex flex-row items-center justify-center ">
-            <Button type="button">
+            <button type="button">
               <div className="text-white mr-3" onClick={handleCreate}>
                 <FaPlus />
               </div>
-            </Button>
-            <Button type="button">
+            </button>
+            <button type="button">
               <div className="mr-3" onClick={handleModal}>
                 <Image
                   src={LOGO}
@@ -69,7 +68,7 @@ export default function Header() {
                   height={30}
                 />
               </div>
-            </Button>
+            </button>
           </div>
         )}
       </nav>
@@ -83,16 +82,30 @@ export default function Header() {
             aria-labelledby="dropdownDividerButton"
           >
             <li>
-              <Link href="/historyEvent">
+              <Link href="/profile">
                 <a className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  History Event
+                  Profile
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/updateEvent">
+              <Link href="/createroom">
                 <a className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Edit Event
+                  Create Room
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/list">
+                <a className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  List Room
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/historypayment">
+                <a className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  History Payment
                 </a>
               </Link>
             </li>
