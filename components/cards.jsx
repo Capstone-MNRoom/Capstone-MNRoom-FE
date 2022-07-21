@@ -2,13 +2,15 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import format from "../utils/formatprice";
+
 export const CardEvenList = (props) => {
   return (
     <div>
       <div className="max-w-sm border-gray-200 p-12">
         <div className="h-64 flex justify-center cursor-pointer">
           <Link href={`/${props.id}`}>
-            <img 
+            <img
               src={props.image}
               className="h-full"
               alt=""
@@ -20,15 +22,10 @@ export const CardEvenList = (props) => {
         <div className="flex justify-center">
           <div className="p-2 pb-0">
             <div className="font-bold text-black/95">{props.title}</div>
-            <div className="text-black/95">{props.Date}</div>
-            <div className="text-black/95">{props.location}</div>
             <div className="font-bold flex justify-between text-black/95">
-              Rp {props.price}
+              Rp {format(props.price)}
             </div>
-            <div className="font-bold flex justify-between text-black/95">
-              {props.quota}
-            </div>
-            <div className="text-black/95 mb-2">{props.status}</div>
+            <div className="text-black/95">{props.city} Kota Semarang</div>
           </div>
         </div>
       </div>
