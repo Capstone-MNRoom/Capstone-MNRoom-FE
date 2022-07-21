@@ -3,7 +3,7 @@ import BasicRating from "../../components/feedback";
 import { TokenContext } from "../../utils/context";
 import { useState, useContext } from "react";
 import Button from "../../components/button";
-import Layout from "../../../components/Layout";
+import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
