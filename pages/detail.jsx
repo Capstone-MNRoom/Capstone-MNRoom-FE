@@ -70,8 +70,6 @@ const Detail = (id) => {
       .finally(() => fetchFacility([]));
   }
 
-  //get date from server
-
   const fetchFacility = (id) => {
     let myHeaders = new Headers();
     myHeaders.append(`Authorization`, `Bearer ${token}`);
@@ -113,31 +111,6 @@ const Detail = (id) => {
       .catch(error => console.log('error', error));
   }
 
-  const handleOrder = () => {
-    let myHeaders = new Headers();
-    myHeaders.append(`Authorization`, `Bearer ${token}`);
-    myHeaders.append(`Content-Type`, `application/json`);
-
-    let raw = JSON.stringify({
-      "rooms_id": 10,
-      "date_start": "16-07-2022",
-      "date_end": "18-07-2022",
-      "bank": "BCA"
-    });
-
-    let requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-
-    fetch("https://mnroom.capstone.my.id/rents", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-  }
-
   const getLabelText = (value) => {
     return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
   }
@@ -155,7 +128,7 @@ const Detail = (id) => {
       </div>
 
       <div className='pl-14 pr-14'>
-        <Image src={data.image_room} />
+        <img src={data.image_room} />
       </div>
       <hr />
       <div className='container '>

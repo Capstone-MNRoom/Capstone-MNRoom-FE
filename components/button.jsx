@@ -3,7 +3,6 @@ import React from "react";
 
 function CustomButton({ id, label, className, loading, onClick }) {
     return (
-        <Link href={`/${id}`}>
             <button
                 id={id}
                 className={className}
@@ -12,8 +11,8 @@ function CustomButton({ id, label, className, loading, onClick }) {
             >
                 {label}
             </button>
-        </Link>
     );
 }
 
 export default CustomButton;
+

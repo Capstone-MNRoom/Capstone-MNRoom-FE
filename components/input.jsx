@@ -2,8 +2,16 @@ import React, { Component } from "react";
 import TextField from "@mui/material/TextField";
 
 const Input = (props) => {
+
+  let object = {};
+
+  if (props.shrink) {
+    object = {
+      shrink: true,
+    };
+  } console.log('ini adalah', object);
+
   return (
-    // <div className="flex flex-col gap-1">
     <>
       <TextField
         id={props.id}
@@ -13,7 +21,7 @@ const Input = (props) => {
         className={props.className}
         onChange={props.onChange}
         value={props.value}
-        // InputLabelProps={{ shrink: true }}
+        InputLabelProps={object}
       />
     </>
   );
