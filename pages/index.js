@@ -40,7 +40,6 @@ const Home = () => {
       requestOptions
     );
     const response = await res.json();
-    console.log(response);
     setCategories(response.data);
     setLoading(false);
   };
@@ -72,11 +71,12 @@ const Home = () => {
           <Layout>
             <div className="my-16">
               <div className="flex justify-evenly text-center items-center lg:flex-row md:flex-row flex-col text-orange-500 mt-5 lg:text-4xl md:text-3xl text-xl font-bold underline cursor-pointer">
-                <a className="w-24" onClick={fetchAllData}>
+                <a id="allroom" className="w-24" onClick={fetchAllData}>
                   All
                 </a>
                 {categories.map((category) => (
                   <a
+                    id={category.category_name.toLowerCase()}
                     className="w-24"
                     key={category.id}
                     onClick={() => getCategory(category.id)}
