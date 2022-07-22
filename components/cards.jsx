@@ -25,7 +25,7 @@ export const CardEvenList = (props) => {
             <div className="font-bold flex justify-between text-black/95">
               Rp {format(props.price)}
             </div>
-            <div className="text-black/95">{props.city} Kota Semarang</div>
+            <div className="text-black/95">{props.city}</div>
           </div>
         </div>
       </div>

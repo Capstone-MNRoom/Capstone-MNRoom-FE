@@ -37,7 +37,6 @@ const Home = () => {
     );
     const response = await res.json();
     setData(response.data);
-    console.log(data);
     setLoading(false);
   };
 
@@ -49,16 +48,18 @@ const Home = () => {
           <Layout>
             <Category />
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
-              {data.map((item) => (
-                <CardEvenList
-                  key={item.id}
-                  id={item.id}
-                  image={item.image_room}
-                  title={item.room_name}
-                  price={item.rental_price}
-                  city={item.city}
-                />
-              ))}
+              {data
+                .map((item) => (
+                  <CardEvenList
+                    key={item.id}
+                    id={item.id}
+                    image={item.image_room}
+                    title={item.room_name}
+                    price={item.rental_price}
+                    city={item.city}
+                  />
+                ))
+                .reverse()}
             </div>
             ;
           </Layout>
