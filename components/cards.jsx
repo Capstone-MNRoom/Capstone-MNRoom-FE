@@ -7,25 +7,25 @@ import format from "../utils/formatprice";
 export const CardEvenList = (props) => {
   return (
     <div>
-      <div className="max-w-sm border-gray-200 p-12">
-        <div className="h-64 flex justify-center cursor-pointer">
+      <div className="max-w-sm py-8">
+        <div className="h-96 flex justify-center cursor-pointer">
           <Link href={`/${props.id}`}>
             <img
               src={props.image}
-              className="h-full"
+              className="h-full w-[90%]"
               alt=""
-              width={150}
+              width={250}
               height={50}
             />
           </Link>
         </div>
-        <div className="flex justify-center">
-          <div className="p-2 pb-0">
-            <div className="font-bold text-black/95">{props.title}</div>
+        <div className="flex ml-1">
+          <div className="p-3 pb-0">
+            <div className="font-bold text-black text-lg">{props.title}</div>
             <div className="font-bold flex justify-between text-black/95">
               Rp {format(props.price)}
             </div>
-            <div className="text-black/95">{props.city}</div>
+            <div className="text-black/70">{props.city}</div>
           </div>
         </div>
       </div>

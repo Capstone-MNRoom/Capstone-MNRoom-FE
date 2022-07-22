@@ -46,8 +46,10 @@ const Home = () => {
       {!loading && (
         <div>
           <Layout>
-            <Category />
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            <div className="my-16">
+              <Category />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 lg:mx-24 md:mx-16 mx-6">
               {data
                 .map((item) => (
                   <CardEvenList
@@ -61,9 +63,7 @@ const Home = () => {
                 ))
                 .reverse()}
             </div>
-            ;
           </Layout>
-          ;
         </div>
       )}
     </>
