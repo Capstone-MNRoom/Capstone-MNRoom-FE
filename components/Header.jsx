@@ -30,8 +30,8 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 w-full px-2 py-2.5 bg-white flex justify-between drop-shadow-2xl z-10">
-        <div className="flex items-center font-bold text-2xl text-black">
+      <nav className="sticky top-0 w-full px-2 py-2.5 bg-white flex justify-between drop-shadow-lg z-10">
+        <div className="flex items-center font-bold text-2xl ml-10 text-[#085E7D]">
           <Link id="to-homepage" href="/">
             MN Room
           </Link>
