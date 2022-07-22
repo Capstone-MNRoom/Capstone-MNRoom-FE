@@ -1,9 +1,9 @@
 import React, { Component, useEffect, useRef } from "react";
-import BasicRating from "../../components/feedback";
-import { TokenContext } from "../../utils/context";
+import BasicRating from "../components/feedback";
+import { TokenContext } from "../utils/context";
 import { useState, useContext } from "react";
-import Button from "../../components/button";
-import Layout from "../../components/Layout";
+import Button from "../components/button";
+import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -41,10 +41,10 @@ const Detail = (id) => {
   const router = useRouter();
 
   useEffect(() => {
-    fetchDetail();
+    fetchData();
   }, []);
 
-  const fetchDetail = (id) => {
+  const fetchData = (id) => {
     let myHeaders = new Headers();
     myHeaders.append(`Authorization`, `Bearer ${token}`);
 
@@ -108,30 +108,17 @@ const Detail = (id) => {
       .catch((error) => console.log("error", error));
   };
 
-  const handleOrder = () => {
-    let myHeaders = new Headers();
-    myHeaders.append(`Authorization`, `Bearer ${token}`);
-    myHeaders.append(`Content-Type`, `application/json`);
-
-    let raw = JSON.stringify({
-      rooms_id: 10,
-      date_start: "16-07-2022",
-      date_end: "18-07-2022",
-      bank: "BCA",
-    });
-
-    let requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setAccount({ ...account, [name]: value });
+  };
 
     fetch("https://mnroom.capstone.my.id/rents", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
-  };
+  
 
   const getLabelText = (value) => {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
@@ -259,6 +246,9 @@ const Detail = (id) => {
       </div>
     </Layout>
   );
-};
+        
+  } 
+
+
 
 export default Detail;

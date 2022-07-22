@@ -1,10 +1,10 @@
 import React from 'react';
-import Image from 'next/image';
 import Router from 'next/router';
+import Lottie from 'react-lottie';
 import Layout from '../components/Layout';
 import { TokenContext } from '../utils/context';
+import LoadingDots from '../components/loading';
 import { CardEvenList } from '../components/cards';
-import Loaded from '../assets/loading-green-dots.json';
 import { useState, useEffect, useContext } from 'react';
 
 import EditIcon from '@mui/icons-material/Edit';
@@ -91,49 +91,49 @@ const List = () => {
 
     if (token !== '0') {
         if (loading) {
+            return <LoadingDots/>;
+        } else {
             return (
-                <Loaded />
-            )
-        }
-    } else {
-        return (
-            <Layout>
-                <div className='text-center font-bold text-3xl text-orange-400 pt-12 pb-12'>
-                    <h1>My Rooms</h1>
-                </div>
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col-3 w-full border-b-4 grow flex border-gray-300 rounded border-r border-l'>
-                            {data.map((item) => (
-                                <CardEvenList
-                                    key={item.id}
-                                    id={item.id}
-                                    image={item.image_room}
-                                    room={item.room_name}
-                                    address={item.address}
-                                    city={item.hotel_name}
-                                    price={item.price}
-                                />
-                            ))}
-                            <div className='flex gap-x-4 text-right pl-56 drop-shadow-2xl'>
-                                <div>
-                                    <EditIcon
-                                        className='edit-icon text-sky-900'
-                                        onClick={() => handleEdit()}
+                <Layout>
+                    <div className='text-center font-bold text-3xl text-orange-400 pt-12 pb-12'>
+                        <h1>My Rooms</h1>
+                    </div>
+                    <div className='container'>
+                        <div className='row'>
+                            <div className='col-3 w-full border-b-4 grow flex border-gray-300 rounded border-r border-l'>
+                                {data.map((item) => (
+                                    <CardEvenList
+                                        key={item.id}
+                                        id={item.id}
+                                        image={item.image_room}
+                                        room={item.room_name}
+                                        address={item.address}
+                                        city={item.city}
+                                        price={item.price}
                                     />
-                                </div>
-                                <div className='text-rose-700'>
-                                    <DeleteIcon
-                                        className='delete-icon'
-                                        onClick={() => handleDelete()}
-                                    />
+                                ))}
+                                <div className='flex gap-x-4 text-right pl-56 drop-shadow-2xl'>
+                                    <div>
+                                        <EditIcon
+                                            className='edit-icon text-sky-900'
+                                            onClick={() => handleEdit()}
+                                        />
+                                    </div>
+                                    <div className='text-rose-700'>
+                                        <DeleteIcon
+                                            className='delete-icon'
+                                            onClick={() => handleDelete()}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </Layout>
-        )
+                </Layout>
+            )
+        }
+    } else {
+        Router.push('/login');
     }
 }
 
