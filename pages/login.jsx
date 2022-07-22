@@ -70,7 +70,10 @@ export default function Login() {
         </p>
       </div>
       <div className="w-full h-screen overflow-auto flex flex-col justify-center items-center bg-[#085E7D]">
-        <h1 className="font-bold lg:text-5xl md:text-4xl text-3xl text-white mb-32">
+        <h1
+          id="Login"
+          className="font-bold lg:text-5xl md:text-4xl text-3xl text-white mb-32"
+        >
           LOGIN
         </h1>
         <form
@@ -78,12 +81,14 @@ export default function Login() {
           className="space-y-4 text-white flex flex-col w-1/2"
         >
           <Input
+            id="loginEmail"
             className="bg-white/30 w-full"
             type="email"
             label="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
+            id="loginPassword"
             className="bg-white/30 w-full"
             type="password"
             label="Password"
@@ -94,14 +99,18 @@ export default function Login() {
               className={`bg-[#E49318] text-white font-bold py-2 w-24 rounded-lg ${
                 loading && "bg-orange-200 cursor-not-allowed"
               }`}
-              id="btn-login"
+              id="btnLogin"
               label="Login"
               loading={loading || disabled}
               type="submit"
             />
           </div>
           <h1 className="flex justify-center">or</h1>
-          <a href={"/register"} className="underline flex justify-center">
+          <a
+            id="createAccount"
+            href={"/register"}
+            className="underline flex justify-center"
+          >
             Create Account
           </a>
         </form>

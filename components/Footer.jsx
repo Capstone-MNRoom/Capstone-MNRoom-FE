@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <div className="bg-[#085E7D] sm:text-left bottom-0">
       <div className="container">
-        <div className="row text-white ml-2 pl-16">
+        <div className="row text-white ml-2 pl-16 py-10">
           <div className="col-3">
             <Link href="http://localhost:3000">
               <h3 className="font-bold">MN Room</h3>
@@ -77,7 +77,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div className="bg-white text-black text-center">
+      <div className="bg-white text-black text-center py-2">
         <h6>2022 ©Copyright MN Room. All Right Reserved.</h6>
       </div>
     </div>

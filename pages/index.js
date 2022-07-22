@@ -37,7 +37,6 @@ const Home = () => {
     );
     const response = await res.json();
     setData(response.data);
-    console.log(data);
     setLoading(false);
   };
 
@@ -47,22 +46,24 @@ const Home = () => {
       {!loading && (
         <div>
           <Layout>
-            <Category />
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
-              {data.map((item) => (
-                <CardEvenList
-                  key={item.id}
-                  id={item.id}
-                  image={item.image_room}
-                  title={item.room_name}
-                  price={item.rental_price}
-                  city={item.city}
-                />
-              ))}
+            <div className="my-16">
+              <Category />
             </div>
-            ;
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 lg:mx-24 md:mx-16 mx-6">
+              {data
+                .map((item) => (
+                  <CardEvenList
+                    key={item.id}
+                    id={item.id}
+                    image={item.image_room}
+                    title={item.room_name}
+                    price={item.rental_price}
+                    city={item.city}
+                  />
+                ))
+                .reverse()}
+            </div>
           </Layout>
-          ;
         </div>
       )}
     </>
