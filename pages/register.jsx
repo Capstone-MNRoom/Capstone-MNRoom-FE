@@ -74,7 +74,10 @@ function Register() {
         </p>
       </div>
       <div className="w-full h-screen  flex flex-col justify-center items-center bg-[#085E7D] lg:py-0 py-14">
-        <h1 className="font-bold lg:text-5xl md:text-4xl text-3xl text-orange-500 pb-14">
+        <h1
+          id="Signup"
+          className="font-bold lg:text-5xl md:text-4xl text-3xl text-orange-500 pb-14"
+        >
           Sign Up
         </h1>
         <form
@@ -82,18 +85,21 @@ function Register() {
           className="space-y-4 text-white flex flex-col lg:w-1/2 w-[80%]"
         >
           <Input
+            id="registerName"
             className="bg-white w-full rounded-md"
             type="text"
             label="username"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
+            id="registerEmail"
             className="bg-white w-full rounded-md"
             type="email"
             label="email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
+            id="registerPassword"
             className="bg-white w-full rounded-md"
             type="password"
             label="password"
@@ -101,12 +107,14 @@ function Register() {
           />
 
           <Input
+            id="registerPhone"
             className="bg-white w-full rounded-md"
             type="tel"
             label="phone"
             onChange={(e) => setPhone(e.target.value)}
           />
           <Input
+            id="registerAddress"
             className="bg-white w-full rounded-md"
             type="text"
             label="address"
@@ -117,7 +125,7 @@ function Register() {
               className={`bg-orange-500 text-white font-bold py-2 w-24 hover:shadow-md hover:shadow-gray-700 rounded-lg ${
                 loading && "bg-orange-200 cursor-not-allowed"
               }`}
-              id="btn-signup"
+              id="btnSignup"
               label="Signup"
               loading={loading || disabled}
               type="submit"

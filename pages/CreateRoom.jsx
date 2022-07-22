@@ -2,9 +2,10 @@ import React from "react";
 import Layout from "../components/Layout";
 import Button from "../components/button";
 import Input from "../components/input";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
+import { useRouter } from "next/router";
 
+import { TokenContext } from "../utils/context";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
@@ -24,12 +25,18 @@ const MenuProps = {
   },
 };
 
-const facilities = ["Meja", "Kursi", "Sound System", "Proyektor"];
-
 function createroom() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const { token, setToken } = useContext(TokenContext);
 
+  const [objSubmit, setObjSubmit] = useState("");
+  const [file, setFile] = useState("");
+  const [picture, setPicture] = useState(null);
+  const [imgData, setImgData] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [facilities, setFacilities] = useState([]);
   const [nameRoom, setNameRoom] = useState("");
   const [price, setPrice] = useState("");
   const [capacity, setCapacity] = useState("");
@@ -39,58 +46,126 @@ function createroom() {
   const [category, setCategory] = useState("");
   const [facility, setFacility] = useState([]);
 
-  // useEffect(() => {
-  //     if (!token === "0") {
-  //         router.push("/");
-  //     }
-  //     if (name && date && address && price && quota && description && status) {
-  //         setDisabled(false);
-  //     } else {
-  //         setDisabled(true);
-  //     }
-  // }, []
-  // );
+  useEffect(() => {
+    handleCategories();
+  }, []);
+
+  useEffect(() => {
+    handlefacilities();
+  }, []);
+
+  useEffect(() => {
+    if (token === "0") {
+      router.push("/");
+    }
+    if (
+      nameRoom &&
+      price &&
+      capacity &&
+      nameHotel &&
+      city &&
+      address &&
+      category &&
+      facility
+    ) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [nameRoom, price, capacity, nameHotel, city, address, category, facility]);
+
+  const handleCategories = async () => {
+    var requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const res = await fetch(
+      "https://mnroom.capstone.my.id/categorys",
+      requestOptions
+    );
+    const response = await res.json();
+    setCategories(response.data);
+  };
+
+  const handlefacilities = async () => {
+    var requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const res = await fetch(
+      "https://mnroom.capstone.my.id/facilitys",
+      requestOptions
+    );
+    const response = await res.json();
+    setFacilities(response.data);
+  };
 
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    const body = {
-      nameRoom,
-      price,
-      capacity,
-      nameHotel,
-      city,
-      address,
-      category,
-      facility,
+
+    var formdata = new FormData();
+    formdata.append("room_name", nameRoom);
+    formdata.append("capacity", parseInt(capacity));
+    formdata.append("hotel_name", nameHotel);
+    formdata.append("rental_price", parseInt(price));
+    formdata.append("address", address);
+    formdata.append("city", city);
+    for (let i = 0; i < facility.length; i++) {
+      formdata.append("facilitys", facility[i].id);
+    }
+    formdata.append("image_room", picture);
+    formdata.append("categorys_id", parseInt(category));
+
+    var requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formdata,
+      redirect: "follow",
     };
-    // var requestOptions = {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(body),
-    // };
-    // fetch("https://altaproject.online/events", requestOptions)
-    //     .then((response) => response.json())
-    //     .then((result) => {
-    //         const { message, data, token } = result;
-    //         if (message === "success") {
-    //             localStorage.setItem("token", token);
-    //             setToken(token);
-    //             router.push("/");
-    //         }
-    //         alert(message);
-    //     })
-    //     .catch((err) => {
-    //         alert(err.toString());
-    //     })
-    //     .finally(() => setLoading(false));
+
+    fetch("https://mnroom.capstone.my.id/rooms", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { message, status } = result;
+        if (status === "success") {
+          router.push("/");
+        }
+        alert(message);
+      })
+      .catch((err) => {
+        alert(err.toString());
+      })
+      .finally(() => setLoading(false));
+  };
+
+  const onChangePicture = (e) => {
+    if (e.target.files[0]) {
+      setPicture(e.target.files[0]);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setImgData(reader.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    }
   };
 
   const handleMultySelect = (event) => {
     const {
       target: { value },
     } = event;
-    setFacility(typeof value === "string" ? value.split(",") : value);
+    setFacility(value);
+    const selectedFacilitys = value.map((item) => item.id);
   };
 
   const handleSelect = (event) => {
@@ -146,6 +221,7 @@ function createroom() {
                 label="Address"
                 onChange={(e) => setAddress(e.target.value)}
               />
+
               <FormControl fullWidth>
                 <InputLabel>Category</InputLabel>
                 <Select
@@ -154,9 +230,11 @@ function createroom() {
                   label="Category"
                   onChange={handleSelect}
                 >
-                  <MenuItem value="workspace">Workspace</MenuItem>
-                  <MenuItem value="hallroom">Hallroom</MenuItem>
-                  <MenuItem value="ballroom">Ballroom</MenuItem>
+                  {categories.map((item) => (
+                    <MenuItem key={item.id} value={item.id}>
+                      {item.category_name}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
               <FormControl>
@@ -167,16 +245,34 @@ function createroom() {
                   value={facility}
                   onChange={handleMultySelect}
                   input={<OutlinedInput label="Facility" />}
-                  renderValue={(selected) => selected.join(", ")}
+                  renderValue={(selected) =>
+                    selected.map((select) => select.name).join(", ")
+                  }
                   MenuProps={MenuProps}
                 >
-                  {facilities.map((item) => (
-                    <MenuItem key={item} value={item}>
-                      <Checkbox checked={facility.indexOf(item) > -1} />
-                      <ListItemText primary={item} />
-                    </MenuItem>
-                  ))}
+                  {facilities &&
+                    facilities.map((item) => (
+                      <MenuItem key={item.id} value={item}>
+                        <Checkbox checked={facility.indexOf(item) > -1} />
+                        <ListItemText primary={item.name} />
+                      </MenuItem>
+                    ))}
                 </Select>
+                <Input
+                  id="uploadPhoto"
+                  type="file"
+                  label=" "
+                  multiple
+                  name="image-upload"
+                  className="rounded-full mt-3"
+                  onChange={onChangePicture}
+                />
+                <div className="previewProfilePic">
+                  <img
+                    className="playerProfilePic_home_tile mt-3"
+                    src={imgData}
+                  />
+                </div>
               </FormControl>
             </div>
             <div className="flex justify-center mt-10">
