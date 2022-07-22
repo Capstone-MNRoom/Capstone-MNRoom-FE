@@ -120,10 +120,6 @@ const Detail = (id) => {
       .catch((error) => console.log("error", error));
   
 
-  const getLabelText = (value) => {
-    return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
-  };
-
   return (
     <Layout>
       <div className="pl-8 pb-10">
