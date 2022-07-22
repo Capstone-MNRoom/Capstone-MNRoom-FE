@@ -131,9 +131,8 @@ const Form = (id) => {
             </div>
             {/* </div>
             ))} */}
-
             <br />
-
+            
             <Input
               shrink={true}
               className="text-black form w-full input pb-2"
