@@ -12,9 +12,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const List = () => {
 
-    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const { token } = useContext(TokenContext);
+
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         fetchData();

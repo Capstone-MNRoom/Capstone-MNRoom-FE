@@ -89,7 +89,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/createroom">
+              <Link href="/CreateRoom">
                 <a className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                   Create Room
                 </a>
