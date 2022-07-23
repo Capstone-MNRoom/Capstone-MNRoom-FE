@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../../../../components/button";
-import Layout from "../../../../components/Layout";
+import Button from "../../../components/button";
+import Layout from "../../../components/Layout";
 
 function confirmpayment() {
   return (

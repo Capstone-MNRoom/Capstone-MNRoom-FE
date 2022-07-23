@@ -25,7 +25,7 @@ const Home = () => {
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
 
-  var requestOptions = {
+  let requestOptions = {
     method: "GET",
     redirect: "follow",
   };
