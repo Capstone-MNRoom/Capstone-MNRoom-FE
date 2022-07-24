@@ -4,7 +4,7 @@ import { Modal, Box } from "@mui/material";
 import React, { Components } from "react";
 import { useRouter } from "next/router";
 
-import Loading from "../assets/loading-green-dots.json";
+import Loading from '../components/loading';
 import Layout from "../components/Layout";
 import Button from "../components/button";
 import Input from "../components/input";
@@ -210,11 +210,7 @@ const Profile = (props) => {
 
   if (token !== "0") {
     if (loading) {
-      return (
-        <div className="h-screen w-screen flex justify-center items-center">
-          <Loading />
-        </div>
-      );
+      return <Loading />;
     } else {
       return (
         <Layout>
