@@ -6,7 +6,7 @@ const Input = (props) => {
 
   if (props.shrink) {
     object = {
-      shrink: false,
+      shrink: true,
     };
   }
 
