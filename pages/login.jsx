@@ -60,43 +60,43 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen flex justify-center">
-      <div className="w-full flex flex-col justify-center">
-        <div className="text-center">
+    <div className="h-screen flex lg:flex-row md:flex-row flex-col justify-center overflow-auto">
+      <div className="w-full flex flex-col justify-center mt-28">
+        <div className="text-center mr-6">
           <Image src={LOGO} />
         </div>
-        <p className="text-center text-orange-400 font-bold">
+        <p className="text-center ml-2 mb-10 text-orange-500 font-bold">
           Trust is Only for The Chosen People
         </p>
       </div>
-      <div className="w-full h-screen overflow-auto flex flex-col justify-center items-center bg-[#085E7D]">
+      <div className="w-full h-screen flex flex-col justify-center items-center bg-[#085E7D]">
         <h1
           id="Login"
-          className="font-bold lg:text-5xl md:text-4xl text-3xl text-white mb-32"
+          className="font-bold lg:text-5xl md:text-4xl text-3xl text-orange-500 pb-14"
         >
           LOGIN
         </h1>
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="space-y-4 text-white flex flex-col w-1/2"
+          className="space-y-4 text-white flex flex-col lg:w-1/2 w-[80%]"
         >
           <Input
             id="loginEmail"
-            className="bg-white/30 w-full"
+            className="bg-white rounded-md w-full"
             type="email"
             label="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             id="loginPassword"
-            className="bg-white/30 w-full"
+            className="bg-white rounded-md w-full"
             type="password"
             label="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="flex justify-center">
             <Button
-              className={`bg-[#E49318] text-white font-bold py-2 w-24 rounded-lg ${
+              className={`bg-orange-500 text-white font-bold py-2 w-24 hover:shadow-md hover:shadow-gray-700 rounded-lg ${
                 loading && "bg-orange-200 cursor-not-allowed"
               }`}
               id="btnLogin"
@@ -109,7 +109,7 @@ export default function Login() {
           <a
             id="createAccount"
             href={"/register"}
-            className="underline flex justify-center"
+            className="underline flex justify-center hover:text-orange-500"
           >
             Create Account
           </a>
