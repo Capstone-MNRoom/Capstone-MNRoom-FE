@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import TextField from "@mui/material/TextField";
 
 const Input = (props) => {
-
   let object = {};
 
   if (props.shrink) {
     object = {
-      shrink: true,
+      shrink: false,
     };
-  } console.log('ini adalah', object);
+  }
 
   return (
     <>
