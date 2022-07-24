@@ -67,12 +67,13 @@ const Detail = (props) => {
       redirect: "follow",
     };
 
-    // console.log("ini router", router);
-
+    
     if (router.query.id == undefined) {
       // return fetchData();
       return false;
     }
+    
+    console.log("ini router", router);
 
     fetch(
       `https://mnroom.capstone.my.id/rooms/${router.query.id || "10"}`,
