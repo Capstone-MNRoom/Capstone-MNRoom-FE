@@ -48,27 +48,35 @@ const Profile = (props) => {
     myHeaders.append(`Authorization`, `Bearer ${token}`);
 
     let requestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: myHeaders,
-      redirect: "follow",
+      redirect: 'follow'
     };
 
-    fetch("https://mnroom.capstone.my.id/users", requestOptions)
-      .then((response) => response.json())
+    fetch(`https://mnroom.capstone.my.id/users/profile`, requestOptions)
+      .then(response => response.json())
       .then((result) => {
         setName(result.data.name);
         setEmail(result.data.email);
         setPhone(result.data.phone);
         setAddress(result.data.address);
+        setImage(result.data.image);
+        setPreview(result.data.image);
       })
-      .catch((error) => console.log("error", error))
-      .finally(() => setUpdate(false));
-  };
+      .catch((error) => {
+        if (error.response.status === 401) {
+          alert('token expired please re-login')
+          handleLogout()
+      }
+      })
+      .finally(() => setLoading(false));
+  }
 
   const handleName = (e) => {
     const inputName = e.target.value;
     setName(inputName);
     isNameError && setIsNameError(false);
+
   };
 
   const handleEmail = (e) => {
@@ -101,6 +109,78 @@ const Profile = (props) => {
     }
   };
 
+  const handleUpdate = () => {
+    const regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    const regName = /^[a-z0-9_-]{3,16}$/igm;
+    const regPhone = /^\d+$/
+    let passed = 0;
+
+    if (regName.test(name)) {
+      setIsNameError(false);
+      passed = passed + 1
+    } else {
+      setIsNameError(true);
+    }
+    if (regEmail.test(email)) {
+      setIsEmailError(false);
+      passed = passed + 1
+    } else {
+      setIsEmailError(true);
+    }
+    if (regPhone.test(phone)) {
+      setIsPhoneError(false);
+      passed = passed + 1
+    } else {
+      setIsPhoneError(true);
+    }
+    if (address !== "") {
+      passed = passed + 1
+    } else {
+      setIsAddressError(true);
+    }
+    if (password !== "") {
+      passed = passed + 1
+    } else {
+      setIsPasswordError(true);
+    }
+    // if (passed === 5) {
+    setLoading(true);
+
+    let myHeaders = new Headers();
+    myHeaders.append(`Authorization`, `Bearer ${token}`);
+
+    let formdata = new FormData();
+    formdata.append("name", name);
+    formdata.append("email", email);
+    formdata.append("password", password);
+    formdata.append("phone", phone);
+    formdata.append("address", address);
+    formdata.append("image", imgData);
+
+
+    let requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    const iduser = localStorage.getItem('idUser')
+
+    fetch("https://mnroom.capstone.my.id/users", requestOptions)
+      .then(response => response.json())
+      .then((result) => {
+        alert(result.message)
+      })
+      .catch(error => {
+        alert(result.message)
+      })
+      .finally(() => setLoading(false))
+    // } else {
+    //   console.log('Failed')
+    // }
+  }
+
   const callDelete = (e) => {
     setModal(true);
   };
@@ -119,8 +199,15 @@ const Profile = (props) => {
       .then((response) => response.json())
       .then((result) => {
         alert(result.message);
+        handleLogout();
       })
-      .catch((error) => console.log("error", error))
+      .catch((error) => {
+        if (error.response.status === 400) {
+          router.push("/login");
+        } else {
+          alert(error.message);
+        }
+      })
       .finally(() => setUpdate(false));
   };
 
@@ -133,71 +220,6 @@ const Profile = (props) => {
         setImgData(reader.result);
       });
       reader.readAsDataURL(e.target.files[0]);
-    }
-  };
-
-  const handleUpdate = () => {
-    const regName = /^[a-zA-Z ]+$/g;
-    const regEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/gim;
-    const regPhone = /^[0-9]{10,}$/;
-    let passed = 0;
-
-    if (regName.test(name)) {
-      setIsNameError(false);
-      passed++;
-    } else {
-      setIsNameError(true);
-    }
-    if (regEmail.test(email)) {
-      setIsEmailError(false);
-      passed++;
-    } else {
-      setIsEmailError(true);
-    }
-    if (regPhone.test(phone)) {
-      setIsPhoneError(false);
-      passed++;
-    } else {
-      setIsPhoneError(true);
-    }
-    if (address !== "") {
-      passed = passed++;
-    } else {
-      setIsAddressError(true);
-    }
-    if (password !== "") {
-      passed = passed++;
-    } else {
-      setIsPasswordError(true);
-    }
-    if (passed === 5) {
-      setLoading(true);
-
-      let myHeaders = new Headers();
-      myHeaders.append(`Authorization`, `Bearer ${token}`);
-
-      let formdata = new FormData();
-      formdata.append("name", name);
-      formdata.append("email", email);
-      formdata.append("password", password);
-      formdata.append("phone", phone);
-      formdata.append("address", address);
-      formdata.append("image", fileInput.files[0], image);
-
-      let requestOptions = {
-        method: "PUT",
-        headers: myHeaders,
-        body: formdata,
-        redirect: "follow",
-      };
-
-      fetch(`https://mnroom.capstone.my.id/users`, requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-          alert(result.message);
-        })
-        .catch((error) => console.log("error", error))
-        .finally(() => setLoading(false));
     }
   };
 
