@@ -1,20 +1,22 @@
-import React from "react";
+import { useState, useEffect, useContext } from "react";
+import { TokenContext } from "../../utils/context";
+import LoadingDots from "../../components/loading";
+import Router, { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import Button from "../../components/button";
-import Input from "../../components/input";
-import { useState, useEffect, useContext } from "react";
-
 import format from "../../utils/formatprice";
-import { TokenContext } from "../../utils/context";
-import Router, { useRouter } from "next/router";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import LoadingDots from "../../components/loading";
-import FormControl from "@mui/material/FormControl";
+import Input from "../../components/input";
+import Room from "../../assets/room.png";
+import Image from "next/image";
+import React from "react";
+
 import OutlinedInput from "@mui/material/OutlinedInput";
 import ListItemText from "@mui/material/ListItemText";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import Select from "@mui/material/Select";
 
 function updateroom() {
   const { token, setToken } = useContext(TokenContext);
@@ -164,6 +166,9 @@ function updateroom() {
   } else {
     return (
       <Layout>
+        <div className='w-full h-full text-left -ml-10 -mt-36 -mb-8'>
+          <Image width={600} height={300} src={Room} />
+        </div>
         <div
           id="updateRoom"
           className="lg:text-4xl md:text-3xl text-2xl text-[#F97316] flex justify-center font-bold lg:my-16 md:my-15 my-10"

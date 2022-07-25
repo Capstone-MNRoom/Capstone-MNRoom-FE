@@ -19,12 +19,13 @@ const Profile = (props) => {
   const [isAddressError, setIsAddressError] = useState(false);
   const [isPhoneError, setIsPhoneError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
-  const [isNameError, setIsNameError] = useState(false);
+  const [isUsernameError, setIsUsernameError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [picture, setPicture] = useState(null);
   const [imgData, setImgData] = useState(null);
   const [Update, setUpdate] = useState(false);
   const [modal, setModal] = useState(false);
+  const [objUpdate, setObjUpdate] = useState('');
 
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +34,7 @@ const Profile = (props) => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
   const [phone, setPhone] = useState("");
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     if (token === "0") {
@@ -56,12 +57,12 @@ const Profile = (props) => {
     fetch(`https://mnroom.capstone.my.id/users/profile`, requestOptions)
       .then(response => response.json())
       .then((result) => {
-        setName(result.data.name);
+        setUsername(result.data.username);
         setEmail(result.data.email);
         setPhone(result.data.phone);
         setAddress(result.data.address);
+        setImgData(result.data.image);
         setImage(result.data.image);
-        setPreview(result.data.image);
       })
       .catch((error) => {
         if (error.response.status === 401) {
@@ -72,10 +73,16 @@ const Profile = (props) => {
       .finally(() => setLoading(false));
   }
 
-  const handleName = (e) => {
-    const inputName = e.target.value;
-    setName(inputName);
-    isNameError && setIsNameError(false);
+  // const handleChange = (value, key) => {
+  //   let temp = {...objUpdate};
+  //   temp[key] = value;
+  //   setObjUpdate(temp);
+  // };
+
+  const handleUsername = (e) => {
+    const inputUsername = e.target.value;
+    setUsername(inputUsername);
+    isUsernameError && setIsUsernameError(false);
 
   };
 
@@ -111,15 +118,15 @@ const Profile = (props) => {
 
   const handleUpdate = () => {
     const regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    const regName = /^[a-z0-9_-]{3,16}$/igm;
+    const regUsername = /^[a-z0-9_-]{3,16}$/igm;
     const regPhone = /^\d+$/
     let passed = 0;
 
-    if (regName.test(name)) {
-      setIsNameError(false);
+    if (regUsername.test(username)) {
+      setIsUsernameError(false);
       passed = passed + 1
     } else {
-      setIsNameError(true);
+      setIsUsernameError(true);
     }
     if (regEmail.test(email)) {
       setIsEmailError(false);
@@ -150,13 +157,12 @@ const Profile = (props) => {
     myHeaders.append(`Authorization`, `Bearer ${token}`);
 
     let formdata = new FormData();
-    formdata.append("name", name);
+    formdata.append("name", username);
     formdata.append("email", email);
     formdata.append("password", password);
     formdata.append("phone", phone);
     formdata.append("address", address);
     formdata.append("image", imgData);
-
 
     let requestOptions = {
       method: 'PUT',
@@ -164,8 +170,6 @@ const Profile = (props) => {
       body: formdata,
       redirect: 'follow'
     };
-
-    const iduser = localStorage.getItem('idUser')
 
     fetch("https://mnroom.capstone.my.id/users", requestOptions)
       .then(response => response.json())
@@ -176,9 +180,6 @@ const Profile = (props) => {
         alert(result.message)
       })
       .finally(() => setLoading(false))
-    // } else {
-    //   console.log('Failed')
-    // }
   }
 
   const callDelete = (e) => {
@@ -260,12 +261,12 @@ const Profile = (props) => {
                   <div className="border-slate-300">
                     <Input
                       className="text-white form w-full input pb-2"
-                      onChange={(e) => handleName(e)}
+                      onChange={(e) => handleUsername(e)}
                       label="Name"
-                      value={name}
+                      value={username}
                       onKeyDown={(e) => callUpdate(e)}
                     >
-                      Name
+                      Username
                     </Input>
                   </div>
                   <br />

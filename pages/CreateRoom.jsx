@@ -1,18 +1,20 @@
-import React from "react";
+import { useEffect, useContext, useState } from "react";
+import { TokenContext } from "../utils/context";
 import Layout from "../components/Layout";
 import Button from "../components/button";
+import Room from '../assets/room.png';
 import Input from "../components/input";
-import { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import React from "react";
 
-import { TokenContext } from "../utils/context";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import ListItemText from "@mui/material/ListItemText";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import Select from "@mui/material/Select";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -26,25 +28,26 @@ const MenuProps = {
 };
 
 function createroom() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [disabled, setDisabled] = useState(true);
-  const { token, setToken } = useContext(TokenContext);
 
-  const [objSubmit, setObjSubmit] = useState("");
-  const [file, setFile] = useState("");
+  const { token, setToken } = useContext(TokenContext);
+  const [disabled, setDisabled] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [picture, setPicture] = useState(null);
   const [imgData, setImgData] = useState(null);
+  const router = useRouter();
+
   const [categories, setCategories] = useState([]);
   const [facilities, setFacilities] = useState([]);
-  const [nameRoom, setNameRoom] = useState("");
-  const [price, setPrice] = useState("");
-  const [capacity, setCapacity] = useState("");
+  const [objSubmit, setObjSubmit] = useState("");
   const [nameHotel, setNameHotel] = useState("");
-  const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
+  const [nameRoom, setNameRoom] = useState("");
+  const [capacity, setCapacity] = useState("");
   const [category, setCategory] = useState("");
   const [facility, setFacility] = useState([]);
+  const [address, setAddress] = useState("");
+  const [price, setPrice] = useState("");
+  const [file, setFile] = useState("");
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     handleCategories();
@@ -174,6 +177,9 @@ function createroom() {
 
   return (
     <Layout>
+      <div className='w-full h-full text-left -ml-10 -mt-36 -mb-8'>
+        <Image width={600} height={300} src={Room}/>
+      </div>
       <div
         id="createRoom"
         className="lg:text-4xl md:text-3xl text-2xl text-[#F97316] flex justify-center font-bold lg:my-16 md:my-15 my-10"
