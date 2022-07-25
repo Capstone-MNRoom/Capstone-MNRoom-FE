@@ -115,7 +115,7 @@ const fetchAllData = async (page = 1) => {
                 />
               ))}
             </div>
-            <Stack spacing={2} className="flex items-center">
+            <Stack spacing={2} className="flex items-center my-12">
               <Pagination
                 size="large"
                 count={10}
