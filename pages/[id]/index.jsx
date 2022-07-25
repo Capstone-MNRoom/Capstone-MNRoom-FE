@@ -67,12 +67,11 @@ const Detail = (props) => {
       redirect: "follow",
     };
 
-    
     if (router.query.id == undefined) {
       // return fetchData();
       return false;
     }
-    
+
     console.log("ini router", router);
 
     fetch(
@@ -151,33 +150,35 @@ const Detail = (props) => {
       <Layout>
         <div className="pl-8 pb-10">
           <div className="font-bold text-3xl text-orange-400 pt-12 pb-2">
-            <h1>{data.hotel_name}</h1>
+            <h1 id="hotel_name">{data.hotel_name}</h1>
           </div>
           <div className="flex">
             <PlaceIcon />
-            <p>{data.address}</p>
-            <p>{data.city}</p>
+            <p id="address">{data.address}</p>
+            <p id="city">{data.city}</p>
           </div>
         </div>
         <div className="pl-14 pr-14">
-          <img src={data.image_room} />
+          <img id="image_room" src={data.image_room} />
         </div>
         <hr />
         <div className="container ">
           <div className="row">
             <div className="col-6 pl-32 pt-8 pb-4">
-              <h3 className="text-2xl font-bold">{data.room_name}</h3>
+              <h3 id="room_name" className="text-2xl font-bold">
+                {data.room_name}
+              </h3>
               <div className="flex pt-4 pb-3 text-lg">
                 <SellIcon />
-                <p>Rp {format(data.rental_price)} / day</p>
+                <p id="price">Rp {format(data.rental_price)} / day</p>
               </div>
               <div className="flex text-lg">
                 <PersonIcon />
-                <p>{data.capacity}</p>
+                <p id="capacity">{data.capacity}</p>
               </div>
               <div className="flex text-lg">
                 <CategoryIcon />
-                <p>{data.Categorys.category_name}</p>
+                <p id="category_id">{data.Categorys.category_name}</p>
               </div>
             </div>
             <div className="col-6 ">
@@ -239,6 +240,7 @@ const Detail = (props) => {
         <div className="text-end pb-10">
           <Link href={`/${router.query.id}/form`}>
             <Button
+              id="btn_order"
               className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-2 mb-3 rounded text-white"
               label="Order"
               // onClick={() => handleOrder()}
