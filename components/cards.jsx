@@ -63,11 +63,11 @@ export const CardEvenList = (props) => {
         </div>
       </div>
 
-      <div>
+      <div className="flex mb-20 ml-2">
         {props.edit && ( // 1, 2
-          <div className="flex my-2 px-2">
+          <div className="flex px-2">
             <button
-              className=" bg-teal-600  px-4 text-black font-bold rounded"
+              className="bg-teal-600 py-2 px-4 text-white font-bold hover:shadow-md hover:shadow-gray-400 rounded"
               onClick={() => handleEdit(props.edit)}
             >
               Edit
@@ -77,7 +77,7 @@ export const CardEvenList = (props) => {
         {props.delete && (
           <div className="flex px-2">
             <button
-              className=" bg-red-800  px-4 text-white font-bold rounded"
+              className="bg-red-800 py-2 px-4 text-white font-bold hover:shadow-md hover:shadow-gray-400 rounded"
               onClick={handleDelete}
             >
               Delete
