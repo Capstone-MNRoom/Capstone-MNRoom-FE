@@ -54,7 +54,7 @@ export const CardEvenList = (props) => {
         </div>
         <div className="flex ml-1">
           <div className="p-3 pb-0">
-            <div className="font-bold text-black text-lg">{props.title}</div>
+            <div className="font-bold text-[#085E7D] text-xl">{props.title}</div>
             <div className="font-bold flex justify-between text-black/95">
               Rp {format(props.price)}
             </div>
