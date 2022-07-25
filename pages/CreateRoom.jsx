@@ -176,15 +176,15 @@ function createroom() {
     <Layout>
       <div
         id="createRoom"
-        className="text-4xl text-[#F97316] flex justify-center font-bold my-16"
+        className="lg:text-4xl md:text-3xl text-2xl text-[#F97316] flex justify-center font-bold lg:my-16 md:my-15 my-10"
       >
         Create Room
       </div>
 
       <div className="flex justify-center">
-        <div className="border shadow-md w-[60%] mb-16 rounded-lg">
-          <form onSubmit={(e) => handleSubmit(e)} className="my-16">
-            <div className="space-y-3 flex flex-col w-[80%] m-auto">
+        <div className="border shadow-md lg:w-[60%] md:w-[70%] w-[90%] mb-16 rounded-lg">
+          <form onSubmit={(e) => handleSubmit(e)} className="lg:my-16 md:my-15 my-10">
+            <div className="space-y-3 flex flex-col lg:w-[80%] md:w-[80%] w-[90%] m-auto">
               <Input
                 id="createRoomName"
                 type="text"
@@ -278,7 +278,7 @@ function createroom() {
             <div className="flex justify-center mt-10">
               <Button
                 id="btnCreateRoom"
-                className={`bg-[#F97316] text-white font-bold py-2 px-14 border border-white rounded-lg shadow-md shadow-gray-300 ${
+                className={`bg-[#F97316] text-white font-bold py-2 px-14 border border-white rounded-lg hover:shadow-md hover:shadow-gray-400 ${
                   loading && "bg-orange-200 cursor-not-allowed"
                 }`}
                 label="Create"
