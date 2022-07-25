@@ -39,7 +39,7 @@ export const CardEvenList = (props) => {
   };
 
   return (
-    <div>
+    <div className="border-2 border-b-slate-500 rounded-lg drop-shadow-2xl">
       <div className="max-w-sm py-8">
         <div className="h-96 flex justify-center cursor-pointer">
           <Link href={`/${props.id}`}>
