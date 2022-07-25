@@ -90,8 +90,8 @@ const Form = (props) => {
     fetch("https://mnroom.capstone.my.id/rents", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        alert(result.message);
-        console.log("ini data result".result.message);
+        console.log(result.message);
+
       })
       .catch((error) => console.log("error", error))
       .finally(() => setLoading(false));
