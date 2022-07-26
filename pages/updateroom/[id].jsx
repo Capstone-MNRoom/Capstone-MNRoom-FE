@@ -166,7 +166,7 @@ function updateroom() {
   } else {
     return (
       <Layout>
-        <div className='w-full h-full text-left -ml-10 -mt-36 -mb-8'>
+        <div className="w-full h-full text-left -ml-10 -mt-36 -mb-8">
           <Image width={600} height={300} src={Room} />
         </div>
         <div
@@ -177,45 +177,48 @@ function updateroom() {
         </div>
         <div className="flex justify-center">
           <div className="border shadow-md lg:w-[60%] md:w-[70%] w-[90%] mb-16 rounded-lg">
-            <form onSubmit={(e) => handleSubmit(e)} className="lg:my-16 md:my-15 my-10">
+            <form
+              onSubmit={(e) => handleSubmit(e)}
+              className="lg:my-16 md:my-15 my-10"
+            >
               <div className="space-y-3 flex flex-col lg:w-[80%] md:w-[80%] w-[90%] m-auto">
                 <Input
-                  id="createRoomName"
+                  id="updateRoomName"
                   type="text"
                   label="Name Room"
                   value={nameRoom}
                   onChange={(e) => setNameRoom(e.target.value)}
                 />
                 <Input
-                  id="createRoomPrice"
+                  id="updateRoomPrice"
                   type="text"
                   label="Price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
                 <Input
-                  id="createRoomCapacity"
+                  id="updateRoomCapacity"
                   type="text"
                   label="Capacity"
                   value={capacity}
                   onChange={(e) => setCapacity(e.target.value)}
                 />
                 <Input
-                  id="createHotelName"
+                  id="updateHotelName"
                   type="text"
                   label="Name Hotel"
                   value={nameHotel}
                   onChange={(e) => setNameHotel(e.target.value)}
                 />
                 <Input
-                  id="createHotelCity"
+                  id="updateHotelCity"
                   type="text"
                   label="City"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                 />
                 <Input
-                  id="createHotelAddress"
+                  id="updateHotelAddress"
                   type="text"
                   label="Address"
                   value={address}
@@ -246,6 +249,7 @@ function updateroom() {
               </div>
               <div className="previewProfilePic">
                 <img
+                  id="previewPhoto"
                   className="playerProfilePic_home_tile mt-3"
                   src={imgData}
                 />
