@@ -39,8 +39,8 @@ export const CardEvenList = (props) => {
   };
 
   return (
-    <div className="border-2 border-b-slate-500 rounded-lg drop-shadow-2xl">
-      <div className="max-w-sm py-8">
+    <div className="border-1 drop-shadow-xl hover:shadow-md hover:shadow-gray-400 hover:-mt-1 mb-4">
+      <div className=" py-4">
         <div className="h-96 flex justify-center cursor-pointer">
           <Link href={`/${props.id}`}>
             <img
@@ -63,7 +63,7 @@ export const CardEvenList = (props) => {
         </div>
       </div>
 
-      <div className="flex mb-20 ml-2">
+      <div className="flex mb-8 ml-2">
         {props.edit && ( // 1, 2
           <div className="flex px-2">
             <button
