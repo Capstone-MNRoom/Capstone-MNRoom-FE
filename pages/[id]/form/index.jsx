@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 
-import format from "../../../utils/formatprice";
 import BNI from "../../../assets/bni.png";
 import BCA from "../../../assets/bca.png";
 
@@ -154,12 +153,12 @@ const Form = (props) => {
                     <div className="flex gap-x-4">
                       <input
                         type="radio"
-                        value="BRI"
+                        value="BNI"
                         name="bank"
                         onChange={(e) => setBank(e.target.value)}
                       />
                       <div className="w-16 h-16">
-                        <Image src={BRI} />
+                        <Image src={BNI} />
                       </div>
                     </div>
                     <div className="flex gap-x-4">
@@ -171,12 +170,6 @@ const Form = (props) => {
                       />
                       <div className="w-16 h-16">
                         <Image src={BCA} />
-                      </div>
-                      <div className="flex gap-x-4">
-                        <input type="radio" value="BCA" name="bank" />
-                        <div className="w-16 h-16">
-                          <Image id="bca_radio" src={BCA} />
-                        </div>
                       </div>
                     </div>
                   </div>
