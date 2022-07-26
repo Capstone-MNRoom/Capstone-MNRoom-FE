@@ -3,6 +3,8 @@ import { TokenContext } from "../utils/context";
 import { Modal, Box } from "@mui/material";
 import React, { Components } from "react";
 import { useRouter } from "next/router";
+import Dot from '../assets/dot.png';
+import Image from "next/image";
 
 import Loading from '../components/loading';
 import Layout from "../components/Layout";
@@ -233,8 +235,11 @@ const Profile = (props) => {
     } else {
       return (
         <Layout>
+          <div className="w-28 pt-2.5 h-full">
+            <Image src={Dot}/>
+          </div>
           <div>
-            <div className="text-center font-bold text-3xl text-orange-400 pt-12 pb-12">
+            <div className="text-center font-bold text-3xl text-orange-400 pt-0 pb-12">
               <h1>Profile</h1>
             </div>
             <div className="container">

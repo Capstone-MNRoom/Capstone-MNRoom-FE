@@ -1,7 +1,7 @@
 import { TokenContext } from "../../../utils/context";
 import LoadingDots from "../../../components/loading";
 import React, { useEffect, useContext } from "react";
-import Button from "../../../components/button";
+import Button from '../../../components/button'
 import Layout from "../../../components/Layout";
 import Input from "../../../components/input";
 import { useRouter } from "next/router";
