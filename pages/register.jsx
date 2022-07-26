@@ -8,14 +8,16 @@ import Input from "../components/input";
 import Button from "../components/button";
 
 function Register() {
-  const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     if (username && email && password && phone && address) {
