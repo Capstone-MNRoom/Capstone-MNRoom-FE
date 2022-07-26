@@ -85,14 +85,14 @@ const Home = () => {
         <div>
           <Layout>
             <div className="my-16 ">
-              <div className="ml-80 pr-80 font-sm flex justify-evenly gap-x-24 text-center items-center lg:flex-row md:flex-row flex-col text-orange-500 mt-5 lg:text-4xl md:text-3xl text-xl font-bold underline cursor-pointer">
+              <div className="lg:mx-64 md:mx-96 mx-10 font-sm flex lg:justify-evenly md:justify-evenly justify-center lg:gap-x-24 md:gap-x-14 gap-x-0 items-center text-center lg:flex-row md:flex-row flex-col text-orange-500 mt-5 lg:text-4xl md:text-3xl text-xl font-bold underline cursor-pointer">
                 <a id="allroom" className="w-24" onClick={fetchAllData}>
                   All
                 </a>
                 {categories.map((category) => (
                   <a
                     id={category.category_name.toLowerCase()}
-                    className="w-24"
+                    className="lg:w-44 md:w-32 w-24"
                     key={category.id}
                     onClick={() => getCategory(category.id)}
                   >
@@ -114,7 +114,7 @@ const Home = () => {
               ))}
             </div>
             <br/>
-            <Stack spacing={2} className="flex items-center">
+            <Stack spacing={2} className="flex items-center my-6">
               <Pagination
                 size="large"
                 count={10}
