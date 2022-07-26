@@ -16,10 +16,10 @@ const Form = (props) => {
   const [loading, setLoading] = useState(true);
   const { token } = useContext(TokenContext);
 
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const [account, setAccount] = useState({});
-  const [bank, setBank] = useState("BCA");
+  const [bank, setBank] = useState('');
   const [data, setData] = useState([]);
   const [item, setItem] = useState({});
   const router = useRouter();
@@ -28,10 +28,6 @@ const Form = (props) => {
     if (!router.isReady) return;
     fetchData();
   }, [router.isReady]);
-
-  setBank = (e) => {
-    console.log(e.target.value);
-  };
 
   const fetchData = () => {
     let myHeaders = new Headers();
@@ -79,16 +75,26 @@ const Form = (props) => {
       .then((response) => response.json())
       .then((result) => {
         alert(result.message);
-        router.push(`/confirmpayment/${result.data.id}`);
+        if (result.status === "success") {
+          router.push(`/${router.query.id}/payment`);
+        }
       })
-      .catch((error) => console.log("error", error))
+      .catch((error) => {
+        alert(result.message);
+      })
+
       .finally(() => setLoading(false));
   };
 
-  // const handleBank = (e) => {
-  //   const inputBank = e.target.value;
-  //   setBank({ ...bank, [e.target.name]: inputBank });
-  // };
+  const handleStartDate = (e) => {
+    const inputDate = e.target.value;
+    setStartDate(inputDate);
+  };
+
+  const handleEndDate = (e) => {
+    const inputDate = e.target.value;
+    setEndDate(inputDate);
+  };
 
   if (token !== "0") {
     if (loading) {
@@ -105,77 +111,92 @@ const Form = (props) => {
                 <img id="image_room" src={data.image_room} />
               </div>
               <div className="col-6">
-                <h2 id="hotel_name" className="text-3xl font-bold">
-                  {data.hotel_name}
-                </h2>
-                <h3 id="room_name" className="text-3xl text-base font-medium">
-                  {data.room_name}
-                </h3>
-                <p id="rental_price" className="text-2xl">
-                  {format(data.rental_price)}
-                </p>
+                <h2 className="text-3xl font-bold">{data.hotel_name}</h2>
+                <h3 className="text-3xl text-base font-medium">{data.room_name}</h3>
+                <p className="text-2xl">{data.total_rental_price}</p>
                 <br />
+
                 <Input
-                  id="start_date"
                   shrink={true}
                   className="text-black form w-full input pb-2"
-                  onChange={(e) => setStartDate(e.target.value)}
+                  onChange={(e) => handleStartDate(e)}
                   label="Start Date"
                   type="date"
                   name="stardate"
+                  min={
+                    account.startdate
+                      ? new Date(account.startdate).toISOString().split("T")[0]
+                      : ""
+                  }
+                  onKeyDown={(e) => Submit(e)}
                   required
                 />
                 <Input
-                  id="end_date"
                   shrink={true}
                   className="text-black form w-full input pb-2"
-                  onChange={(e) => setEndDate(e.target.value)}
+                  onChange={(e) => handleEndDate(e)}
                   label="End Date"
                   type="date"
                   name="enddate"
                   disabled={account.startdate === "" ? true : false}
+                  min={
+                    account.enddate
+                      ? new Date(account.enddate).toISOString().split("T")[0]
+                      : ""
+                  }
+                  onKeyDown={(e) => Submit(e)}
                   required
                 />
                 <br />
                 <div className="flex">
                   <p className="text-xl">Method Payment</p>
-                  <div
-                    id="bank_id"
-                    onChange={setBank.bind(this)}
-                    className="flex gap-x-6 pl-6"
-                  >
+                  <div className="flex gap-x-6 pl-6">
                     <div className="flex gap-x-4">
-                      <input type="radio" value="BNI" name="bank" />
+                      <input
+                        type="radio"
+                        value="BRI"
+                        name="bank"
+                        onChange={(e) => setBank(e.target.value)}
+                      />
                       <div className="w-16 h-16">
-                        <Image id="bni_radio" src={BNI} />
+                        <Image src={BRI} />
                       </div>
                     </div>
                     <div className="flex gap-x-4">
-                      <input type="radio" value="BCA" name="bank" />
+                      <input
+                        type="radio"
+                        value="BCA"
+                        name="bank"
+                        onChange={(e) => setBank(e.target.value)}
+                      />
                       <div className="w-16 h-16">
-                        <Image id="bca_radio" src={BCA} />
+                        <Image src={BCA} />
+                      </div>
+                      <div className="flex gap-x-4">
+                        <input type="radio" value="BCA" name="bank" />
+                        <div className="w-16 h-16">
+                          <Image id="bca_radio" src={BCA} />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <br />
-
-              <div className="text-end pb-10">
-                <Button
-                  id="btn_rent"
-                  className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-2 mb-3 rounded text-white"
-                  label="Confirm"
-                  onClick={() => handleConfirm()}
-                />
+                <br />
+                <div className="text-end pb-10">
+                  <Button
+                    id="btn_rent"
+                    className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-2 mb-3 rounded text-white"
+                    label="Confirm"
+                    onClick={() => handleConfirm()}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </Layout>
-      );
+      )
     }
   }
-};
+}
 
 export default Form;
