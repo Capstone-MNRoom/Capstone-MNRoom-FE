@@ -74,7 +74,7 @@ const List = () => {
           <div className="text-center font-bold text-3xl text-orange-400 pt-12 pb-12">
             <h1>My Rooms</h1>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 lg:mx-24 md:mx-16 mx-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 lg:mx-24 md:mx-16 mx-6 mb-12">
             {data.map((item) => (
               <CardEvenList
                 key={item.id}
