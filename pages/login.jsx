@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-
 import { TokenContext } from "../utils/context";
+import { useRouter } from "next/router";
 
 import Image from "next/image";
 import LOGO from "../assets/logo.png";
@@ -9,8 +8,10 @@ import Input from "../components/input";
 import Button from "../components/button";
 
 export default function Login() {
-  const router = useRouter();
+
   const { token, setToken } = useContext(TokenContext);
+  
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);

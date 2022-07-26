@@ -8,33 +8,33 @@ import Loading from '../components/loading';
 import Layout from "../components/Layout";
 import Button from "../components/button";
 import Input from "../components/input";
-import Image from "next/image";
 import Link from "next/link";
 
 const Profile = (props) => {
+
   const { token, setToken } = useContext(TokenContext);
   const router = useRouter();
 
   const [isPasswordError, setIsPasswordError] = useState(false);
+  const [isUsernameError, setIsUsernameError] = useState(false);
   const [isAddressError, setIsAddressError] = useState(false);
   const [isPhoneError, setIsPhoneError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
-  const [isUsernameError, setIsUsernameError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [picture, setPicture] = useState(null);
   const [imgData, setImgData] = useState(null);
   const [Update, setUpdate] = useState(false);
   const [modal, setModal] = useState(false);
-  const [objUpdate, setObjUpdate] = useState('');
-
+  
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [objUpdate, setObjUpdate] = useState('');
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [preview, setPreview] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
   const [phone, setPhone] = useState("");
-  const [username, setUsername] = useState("");
 
   useEffect(() => {
     if (token === "0") {
@@ -83,7 +83,6 @@ const Profile = (props) => {
     const inputUsername = e.target.value;
     setUsername(inputUsername);
     isUsernameError && setIsUsernameError(false);
-
   };
 
   const handleEmail = (e) => {
@@ -150,7 +149,7 @@ const Profile = (props) => {
     } else {
       setIsPasswordError(true);
     }
-    // if (passed === 5) {
+   
     setLoading(true);
 
     let myHeaders = new Headers();
@@ -331,7 +330,6 @@ const Profile = (props) => {
                 className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-5 rounded text-white"
                 id="logout-button"
                 onClick={() => handleLogOut()}
-                // disabled={disabled}
                 label="Log Out"
               />
             </div>
