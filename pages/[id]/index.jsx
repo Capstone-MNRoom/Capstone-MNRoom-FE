@@ -148,80 +148,74 @@ const Detail = (props) => {
   } else {
     return (
       <Layout>
-        <div className="pl-8 pb-10">
-          <div className="font-bold text-3xl text-orange-400 pt-12 pb-2">
+        <div className="lg:mx-36 md:mx-28 mx-20 mb-10">
+          <div className="font-bold text-4xl text-orange-500 pt-12 pb-3">
             <h1 id="hotel_name">{data.hotel_name}</h1>
           </div>
-          <div className="flex">
+          <div className="flex text-xl">
             <PlaceIcon />
-            <p id="address">{data.address}</p>
-            <p id="city">{data.city}</p>
+            <p id="address">&nbsp;{data.address},</p>
+            <p id="city">&nbsp;{data.city}</p>
           </div>
         </div>
-        <div className="pl-14 pr-14">
+        <div className="lg:mx-48 md:mx-40 mx-32">
           <img id="image_room" src={data.image_room} />
         </div>
-        <hr />
-        <div className="container ">
-          <div className="row">
-            <div className="col-6 pl-32 pt-8 pb-4">
-              <h3 id="room_name" className="text-2xl font-bold">
-                {data.room_name}
-              </h3>
-              <div className="flex pt-4 pb-3 text-lg">
-                <SellIcon />
-                <p id="price">Rp {format(data.rental_price)} / day</p>
-              </div>
-              <div className="flex text-lg">
-                <PersonIcon />
-                <p id="capacity">{data.capacity}</p>
-              </div>
-              <div className="flex text-lg">
-                <CategoryIcon />
-                <p id="category_id">{data.Categorys.category_name}</p>
-              </div>
+        <div className="flex justify-between my-12 mx-40">
+          <div className="">
+            <h3 id="room_name" className="text-2xl font-bold">
+              {data.room_name}
+            </h3>
+            <div className="flex mt-4 mb-2 text-xl">
+              <SellIcon />
+              <p id="price">&nbsp;Rp {format(data.rental_price)} <span className="text-black/70 text-sm">/day</span></p>
             </div>
-            <div className="col-6 ">
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <StaticDatePicker
-                  displayStaticWrapperAs="desktop"
-                  openTo="year"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+            <div className="flex mb-2 text-xl">
+              <PersonIcon />
+              <p id="capacity">&nbsp;{data.capacity}</p>
             </div>
+            <div className="flex mb-2 text-xl">
+              <CategoryIcon />
+              <p id="category_id">&nbsp;{data.Categorys.category_name}</p>
+            </div>
+          </div>
+          <div className="">
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <StaticDatePicker
+                displayStaticWrapperAs="desktop"
+                openTo="year"
+                value={value}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
           </div>
         </div>
         <hr />
-        <div className="font-bold pl-36 pt-8 pb-8 text-xl">
+        <div className="font-bold ml-40 my-8 text-xl">
           <h3>Facility</h3>
         </div>
         <div className="container">
-          <div className="row">
-            {facility.map((item, index) => (
-              <div key={index}>
-                <div className="col-6 pl-56 text-lg">
-                  <div className="flex gap-4">
-                    {item.Facilitys.id == 1 ? <TableRestaurantIcon /> : null}
-                    {item.Facilitys.id == 2 ? <ChairIcon /> : null}
-                    {item.Facilitys.id == 3 ? <FilterVintageIcon /> : null}
-                    {item.Facilitys.id == 4 ? <BusinessCenterIcon /> : null}
-                    {/* {item.Facilitys.id == 5 ? <LocalDiningIcon /> : null}
-                    {item.Facilitys.id == 6 ? <CastIcon /> : null}
-                    {item.Facilitys.id == 7 ? <AcUnitIcon /> : null}
-                    {item.Facilitys.id == 8 ? <WifiIcon /> : null} */}
-                    <p>{item.Facilitys.name}</p>
-                  </div>
+          {facility.map((item, index) => (
+            <div key={index}>
+              <div className="ml-40 text-lg mb-2">
+                <div className="flex gap-4">
+                  {item.Facilitys.id == 1 ? <TableRestaurantIcon /> : null}
+                  {item.Facilitys.id == 2 ? <ChairIcon /> : null}
+                  {item.Facilitys.id == 3 ? <FilterVintageIcon /> : null}
+                  {item.Facilitys.id == 4 ? <BusinessCenterIcon /> : null}
+                  {/* {item.Facilitys.id == 5 ? <LocalDiningIcon /> : null}
+                  {item.Facilitys.id == 6 ? <CastIcon /> : null}
+                  {item.Facilitys.id == 7 ? <AcUnitIcon /> : null}
+                  {item.Facilitys.id == 8 ? <WifiIcon /> : null} */}
+                  <p>{item.Facilitys.name}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-        <hr />
         {/* <div className="font-bold pl-36 pt-8 pb-8 text-xl">
           <h3>Feedback</h3>
         </div>
@@ -237,11 +231,11 @@ const Detail = (props) => {
           ))}
         </div> */}
 
-        <div className="text-end pb-10">
+        <div className="text-end my-14 mx-32">
           <Link href={`/${router.query.id}/form`}>
             <Button
               id="btn_order"
-              className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-2 mb-3 rounded text-white"
+              className="w-1/3 bg-orange-500 border border-white hover:shadow-md hover:shadow-gray-400 text-lg font-bold py-2 px-2 mb-3 rounded-md text-white"
               label="Order"
               // onClick={() => handleOrder()}
             />
