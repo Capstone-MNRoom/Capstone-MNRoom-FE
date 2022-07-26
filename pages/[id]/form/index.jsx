@@ -7,7 +7,6 @@ import Input from "../../../components/input";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 import BRI from "../../../assets/bri.png";
 import BCA from "../../../assets/bca.png";
@@ -16,10 +15,10 @@ const Form = (props) => {
   const [loading, setLoading] = useState(true);
   const { token } = useContext(TokenContext);
 
-  const [startDate, setStartDate] = useState("10-12-2022");
-  const [endDate, setEndDate] = useState("12-12-2022");
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const [account, setAccount] = useState({});
-  const [bank, setBank] = useState("BCA");
+  const [bank, setBank] = useState('');
   const [data, setData] = useState([]);
   const [item, setItem] = useState({});
   const router = useRouter();
@@ -40,17 +39,9 @@ const Form = (props) => {
     fetchData();
   }, [router.isReady]);
 
-  setBank = (e) => {
-    console.log(e.target.value);
-  };
-
   const fetchData = () => {
     let myHeaders = new Headers();
     myHeaders.append(`Authorization`, `Bearer ${token}`);
-
-    // if (router.query.id == undefind) {
-    //   return false
-    // }
 
     let requestOptions = {
       method: 'GET',
@@ -90,27 +81,26 @@ const Form = (props) => {
     fetch("https://mnroom.capstone.my.id/rents", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.message);
-
+        alert(result.message);
+        if (result.status === "success") {
+          router.push(`/${router.query.id}/payment`);
+        }
       })
-      .catch((error) => console.log("error", error))
+      .catch((error) => {
+        alert(result.message);
+      })
+
       .finally(() => setLoading(false));
   };
 
   const handleStartDate = (e) => {
     const inputDate = e.target.value;
-    setStartDate({ ...startDate, [e.target.name]: inputDate });
-    console.log('tanggal awal mulai', startDate);
+    setStartDate(inputDate);
   };
 
   const handleEndDate = (e) => {
     const inputDate = e.target.value;
-    setEndDate({ ...endDate, [e.target.name]: inputDate });
-  };
-
-  const handleBank = (e) => {
-    const inputBank = e.target.value;
-    setBank({ ...bank, [e.target.name]: inputBank });
+    setEndDate(inputDate);
   };
 
   if (token !== "0") {
@@ -141,7 +131,6 @@ const Form = (props) => {
                 label="Start Date"
                 type="date"
                 name="stardate"
-                // value={startDate}
                 min={
                   account.startdate
                     ? new Date(account.startdate).toISOString().split("T")[0]
@@ -156,7 +145,6 @@ const Form = (props) => {
                 onChange={(e) => handleEndDate(e)}
                 label="End Date"
                 type="date"
-                // value={endDate}
                 name="enddate"
                 disabled={account.startdate === "" ? true : false}
                 min={
@@ -172,13 +160,13 @@ const Form = (props) => {
 
               <div className="flex">
                 <p className="text-xl">Method Payment</p>
-                <div onChange={setBank.bind(this)} className="flex gap-x-6 pl-6">
+                <div className="flex gap-x-6 pl-6">
                   <div className="flex gap-x-4">
                     <input
                       type="radio"
                       value="BRI"
                       name="bank"
-                      onChange={(e) => handleConfirm(e)}
+                      onChange={(e) => setBank(e.target.value)}
                     />
                     <div className="w-16 h-16">
                       <Image src={BRI} />
@@ -189,7 +177,7 @@ const Form = (props) => {
                       type="radio"
                       value="BCA"
                       name="bank"
-                      onChange={(e) => handleConfirm(e)}
+                      onChange={(e) => setBank(e.target.value)}
                     />
                     <div className="w-16 h-16">
                       <Image src={BCA} />
@@ -202,13 +190,11 @@ const Form = (props) => {
               <br />
 
               <div className="text-end pb-10">
-                <Link href={`/${router.query.id}/payment`}>
                   <Button
                     className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-2 mb-3 rounded text-white"
                     label="Confirm"
                     onClick={() => handleConfirm()}
                   />
-                </Link>
               </div>
             </div>
           </div>

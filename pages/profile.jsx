@@ -68,16 +68,16 @@ const Profile = (props) => {
         if (error.response.status === 401) {
           alert('token expired please re-login')
           handleLogout()
-      }
+        }
       })
       .finally(() => setLoading(false));
   }
 
-  // const handleChange = (value, key) => {
-  //   let temp = {...objUpdate};
-  //   temp[key] = value;
-  //   setObjUpdate(temp);
-  // };
+  const handleChange = (value, key) => {
+    let temp = { ...objUpdate };
+    temp[key] = value;
+    setObjUpdate(temp);
+  };
 
   const handleUsername = (e) => {
     const inputUsername = e.target.value;
@@ -157,12 +157,9 @@ const Profile = (props) => {
     myHeaders.append(`Authorization`, `Bearer ${token}`);
 
     let formdata = new FormData();
-    formdata.append("name", username);
-    formdata.append("email", email);
-    formdata.append("password", password);
-    formdata.append("phone", phone);
-    formdata.append("address", address);
-    formdata.append("image", imgData);
+    for (const key in objUpdate) {
+      formdata.append(key, objUpdate[key]);
+    }
 
     let requestOptions = {
       method: 'PUT',
@@ -175,6 +172,7 @@ const Profile = (props) => {
       .then(response => response.json())
       .then((result) => {
         alert(result.message)
+        setObjUpdate({});
       })
       .catch(error => {
         alert(result.message)
@@ -214,7 +212,6 @@ const Profile = (props) => {
 
   const onChangePicture = (e) => {
     if (e.target.files[0]) {
-      console.log("picture: ", e.target.files);
       setPicture(e.target.files[0]);
       const reader = new FileReader();
       reader.addEventListener("load", () => {
@@ -254,14 +251,19 @@ const Profile = (props) => {
                     multiple
                     name="image-upload"
                     className="rounded-full"
-                    onChange={onChangePicture}
+                    onChange={(e) => { onChangePicture(e)
+                      handleChange(e.target.files[0], "image") }}
                   />
                 </div>
                 <div className="col-6">
                   <div className="border-slate-300">
                     <Input
                       className="text-white form w-full input pb-2"
-                      onChange={(e) => handleUsername(e)}
+                      onChange={(e) => {
+                        handleUsername(e)
+                        handleChange(e.target.value, "username")
+                      }}
+
                       label="Name"
                       value={username}
                       onKeyDown={(e) => callUpdate(e)}
@@ -273,7 +275,10 @@ const Profile = (props) => {
                   <div>
                     <Input
                       className="text-white form w-full input pb-2"
-                      onChange={(e) => handleEmail(e)}
+                      onChange={(e) => {
+                        handleEmail(e)
+                        handleChange(e.target.value, "email")
+                      }}
                       label="E-mail"
                       value={email}
                       onKeyDown={(e) => callUpdate(e)}
@@ -285,7 +290,10 @@ const Profile = (props) => {
                   <div>
                     <Input
                       className="text-white form w-full input pb-2"
-                      onChange={(e) => handlePhone(e)}
+                      onChange={(e) => {
+                        handlePhone(e)
+                        handleChange(e.target.value, "phone")
+                      }}
                       label="Phone"
                       value={phone}
                       onKeyDown={(e) => callUpdate(e)}
@@ -297,7 +305,10 @@ const Profile = (props) => {
                   <div>
                     <Input
                       className="text-white form w-full input pb-2"
-                      onChange={(e) => handleAddress(e)}
+                      onChange={(e) => {
+                        handleAddress(e)
+                        handleChange(e.target.value, "address")
+                      }}
                       label="Address"
                       value={address}
                       onKeyDown={(e) => callUpdate(e)}
@@ -339,11 +350,13 @@ const Profile = (props) => {
               </Box>
             </Modal>
             <div className="pl-96 pb-6">
-              <Button
-                className="bg-rose-700 hover:bg-rose-400 font-bold py-2 px-4 rounded text-white"
-                label="Delete Account"
-                onClick={() => handleDelete()}
-              />
+              <Link href='/login'>
+                <Button
+                  className="bg-rose-700 hover:bg-rose-400 font-bold py-2 px-4 rounded text-white"
+                  label="Delete Account"
+                  onClick={() => handleDelete()}
+                />
+              </Link>
             </div>
           </div>
         </Layout>
