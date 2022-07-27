@@ -69,3 +69,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 [@Dewi Wulandari](https://github.com/wulandaridewi69)
 
+[@David Wahyu](https://github.com/davidwah)
+
+[@Mulya Nurdin](https://github.com/mulyanurdin10)
+
+[@Mohamad Azis](https://github.com/mohamadazisadnan)
+
+[@Muhammad Nur Yasin](https://github.com/MuhammadNurYasin)
+
+[@Salsabilla Aliska](https://github.com/salsabillaap)
+
+[@Ariemby Kusuma](https://github.com/ariembykusuma)
