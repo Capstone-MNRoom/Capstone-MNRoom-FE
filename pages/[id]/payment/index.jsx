@@ -1,18 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
 import { TokenContext } from "../../../utils/context";
-import Button from '../../../components/button';
+import Button from "../../../components/button";
 import Layout from "../../../components/Layout";
 import format from "../../../utils/formatprice";
 import { useRouter } from "next/router";
-import LoadingDots from '../../../components/loading';
+import LoadingDots from "../../../components/loading";
+import Link from "next/link";
 
 const ConfirmPayment = () => {
-
   const router = useRouter();
   const { token } = useContext(TokenContext);
   const [rentData, setRentData] = useState({});
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -33,9 +32,7 @@ const ConfirmPayment = () => {
       .then((response) => response.json())
       .then((result) => {
         const allData = result.data;
-        const findData = allData.find(
-          (obj) => obj.id === +router.query.id
-        );
+        const findData = allData.find((obj) => obj.id === +router.query.id);
         setRentData(findData);
       })
       .catch((error) => console.log("error", error))
@@ -84,24 +81,24 @@ const ConfirmPayment = () => {
               <h1 className="font-bold my-1">Total Payment</h1>
               <p>Rp. {format(rentData.gross_amount)}</p>
             </div>
-  
+
             <div className="pt-8 flex justify-end pr-20">
-              <Button
-                id="btn-confirm-payment"
-                label="Confirm"
-                // loading={loading || disabled}
-                className={
-                  "bg-[#F97316] text-white font-bold py-2 px-14 border border-white rounded-lg shadow-md shadow-gray-300"
-                }
-              />
+              <Link href={`/historypayment`}>
+                <Button
+                  id="btn-confirm-payment"
+                  label="Confirm"
+                  // loading={loading || disabled}
+                  className={
+                    "bg-[#F97316] text-white font-bold py-2 px-14 border border-white rounded-lg shadow-md shadow-gray-300"
+                  }
+                />
+              </Link>
             </div>
           </div>
         </div>
       </Layout>
     );
   }
-
-  
-}
+};
 
 export default ConfirmPayment;
