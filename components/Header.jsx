@@ -5,6 +5,7 @@ import Image from "next/image";
 import LOGO from "../assets/logo.png";
 import { TokenContext } from "../utils/context";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 export default function Header() {
   const router = useRouter();
@@ -17,7 +18,12 @@ export default function Header() {
     localStorage.removeItem("token");
     setShowModal(!showModal);
     router.push("/");
-    alert("You have been logged out");
+    // alert("You have been logged out");
+    Swal.fire(
+      'Logged Out!',
+      'thank you and welcome back anytime!',
+      'success'
+    )
   };
 
   const handleCreate = () => {
