@@ -1,6 +1,6 @@
 # CAPSTONE PROJECT (MN ROOM)
 
-The purpose we built this project to compelete bootcamp task.
+The purpose we built this project to compelete bootcamp Final Project.
 
 ## Deployment
 
