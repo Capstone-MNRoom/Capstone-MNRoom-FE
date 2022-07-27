@@ -3,7 +3,7 @@ import { TokenContext } from "../utils/context";
 import { Modal, Box } from "@mui/material";
 import React, { Components } from "react";
 import { useRouter } from "next/router";
-import Dot from '../assets/dot.png';
+import Room from "../assets/room.png";
 import Image from "next/image";
 
 import Loading from '../components/loading';
@@ -235,17 +235,17 @@ const Profile = (props) => {
     } else {
       return (
         <Layout>
-          <div className="w-28 pt-2.5 h-full">
-            <Image src={Dot}/>
+          <div className='w-full h-full text-left -ml-10 -mt-36 -mb-8'>
+            <Image width={600} height={300} src={Room}/>
           </div>
           <div>
-            <div className="text-center font-bold text-3xl text-orange-400 pt-0 pb-12">
+            <div className="lg:text-4xl md:text-3xl text-2xl text-orange-500 flex justify-center font-bold lg:mb-20 md:mb-16 mb-10">
               <h1>Profile</h1>
             </div>
             <div className="container">
-              <div className="row">
-                <div className="col-6 text-center">
-                  <div className="previewProfilePic">
+              <div className="flex w-full lg:flex-row md:flex-row flex-col">
+                <div className="lg:w-[50%] md:w-[50%] w-[90%] text-center mb-10">
+                  <div className="w-1/3 m-auto mb-4">
                     <img className="playerProfilePic_home_tile" src={imgData} />
                   </div>
                   <Input
@@ -259,8 +259,8 @@ const Profile = (props) => {
                       handleChange(e.target.files[0], "image") }}
                   />
                 </div>
-                <div className="col-6">
-                  <div className="border-slate-300">
+                <div className="lg:w-[50%] md:w-[50%] w-[90%] m-auto">
+                  <div className="border-slate-300 w-[90%] space-y-3">
                     <Input
                       className="text-white form w-full input pb-2"
                       onChange={(e) => {
@@ -274,9 +274,6 @@ const Profile = (props) => {
                     >
                       Username
                     </Input>
-                  </div>
-                  <br />
-                  <div>
                     <Input
                       className="text-white form w-full input pb-2"
                       onChange={(e) => {
@@ -289,9 +286,6 @@ const Profile = (props) => {
                     >
                       Email
                     </Input>
-                  </div>
-                  <br />
-                  <div>
                     <Input
                       className="text-white form w-full input pb-2"
                       onChange={(e) => {
@@ -304,9 +298,6 @@ const Profile = (props) => {
                     >
                       Phone Number
                     </Input>
-                  </div>
-                  <br />
-                  <div>
                     <Input
                       className="text-white form w-full input pb-2"
                       onChange={(e) => {
@@ -319,20 +310,18 @@ const Profile = (props) => {
                     >
                       Address
                     </Input>
-                  </div>
-                  <br />
                 </div>
               </div>
             </div>
 
-            <div className="flex pl-72 pt-8 pb-12 gap-x-16">
+            <div className="flex justify-center mt-10 mb-6 gap-x-10">
               <Button
-                className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-5 rounded text-white"
+                className=" bg-orange-500 border border-white hover:shadow-md hover:shadow-gray-400 font-bold py-2 px-5 rounded-md text-white"
                 label="Update"
                 onClick={() => handleUpdate()}
               />
               <Button
-                className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-5 rounded text-white"
+                className=" bg-orange-500 border border-white hover:shadow-md hover:shadow-gray-400 font-bold py-2 px-5 rounded-md text-white"
                 id="logout-button"
                 onClick={() => handleLogOut()}
                 label="Log Out"
@@ -352,16 +341,17 @@ const Profile = (props) => {
                 </Button>
               </Box>
             </Modal>
-            <div className="pl-96 pb-6">
+            <div className="w-full text-center mb-16">
               <Link href='/login'>
                 <Button
-                  className="bg-rose-700 hover:bg-rose-400 font-bold py-2 px-4 rounded text-white"
+                  className="bg-rose-700 border border-white hover:shadow-md hover:shadow-gray-400 font-bold py-2 px-4 rounded-md text-white"
                   label="Delete Account"
                   onClick={() => handleDelete()}
                 />
               </Link>
             </div>
           </div>
+        </div>
         </Layout>
       );
     }
