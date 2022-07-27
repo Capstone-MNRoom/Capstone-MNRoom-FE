@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 import Layaout from "../components/Layout";
-import DoneOutlineRoundedIcon from "@mui/icons-material/DoneOutlineRounded";
-import Button from "../components/button";
-import Historycomp from "../components/Historycomp";
+import History from "../components/History";
 
 const Historypayment = () => {
 
@@ -49,7 +47,7 @@ const Historypayment = () => {
         </div>
         <div>
           {data.map((item) => (
-                <Historycomp
+                <History
                   key={item.id}
                   id={item.id}
                   title={item.room_name}
