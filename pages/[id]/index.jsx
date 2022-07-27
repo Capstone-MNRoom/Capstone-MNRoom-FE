@@ -76,7 +76,7 @@ const Detail = (props) => {
         }
       })
       .finally(() => fetchFacility());
-  };
+  }; 
 
   const fetchFacility = () => {
     let myHeaders = new Headers();
@@ -94,7 +94,9 @@ const Detail = (props) => {
     )
       .then((response) => response.json())
       .then((result) => {
-        setFacility(result.data);
+        if (result.data !== undefined) {
+          setFacility(result.data);
+        }
       })
       .catch((error) => console.log("error", error))
       .finally(() => fetchFeedback());
