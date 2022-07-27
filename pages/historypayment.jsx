@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+
+import { TokenContext } from "../utils/context";
 
 import Layaout from "../components/Layout";
-import History from "../components/History";
+import CardHistory from "../components/History";
+import format from "../utils/formatprice";
 
-const Historypayment = () => {
-
+function Historypayment() {
+  const [history, setHistory] = useState([]);
+  const { token, setToken } = useContext(TokenContext);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -22,47 +25,32 @@ const Historypayment = () => {
       redirect: "follow",
     };
 
-    fetch(`https://mnroom.capstone.my.id/users/historypayment`, requestOptions)
+    fetch(`https://mnroom.capstone.my.id/historys`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setData(result.data);
+        setHistory(result.data);
       })
-      .catch((err) => {
-        alert(err.toString());
-      })
+      .catch((error) => console.log("error", error))
       .finally(() => setLoading(false));
   };
 
-  if (loading) {
-    return <LoadingDots />;
-  } else {
-    return (
-      <Layaout>
-        <div className="mb-auto">
-        <Link href="/">
-          <p id="btnHomepage" className="text-sm pt-1 underline text-orange-500 ml-10">← Back to Homepage</p>
-        </Link>
-        <div id="historyPayment" className="text-center text-orange-500 text-4xl font-bold p-20 w-full">
-          History Payment
-        </div>
-        <div>
-          {data.map((item) => (
-                <History
-                  key={item.id}
-                  id={item.id}
-                  title={item.room_name}
-                  city={item.city}
-                  start={item.date_start}
-                  end={item.date_end}
-                  price={item.rental_price}
-                  icon={item.id}
-                  button={item.id}
-                />
-              ))}
-        </div>
+  return (
+    <Layaout>
+      <div className="text-center text-[#085E7D] text-5xl p-20 w-full">
+        History Payment
       </div>
-      </Layaout>
-    );
-  }
+      {history.map((item) => (
+        <CardHistory
+          key={item.id}
+          id={item.id}
+          roomId={item.Rooms.id}
+          roomName={item.Rooms.room_name}
+          grossAmount={format(item.total_rental_price)}
+          dateStart={item.date_start}
+          dateEnd={item.date_end}
+        />
+      ))}
+    </Layaout>
+  );
 }
 export default Historypayment;
