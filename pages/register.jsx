@@ -6,6 +6,7 @@ import Image from "next/image";
 import LOGO from "../assets/logo.png";
 import Input from "../components/input";
 import Button from "../components/button";
+import Swal from "sweetalert2";
 
 function Register() {
 
@@ -55,7 +56,12 @@ function Register() {
         const { data } = response;
         response.json();
         if (response.status == 200) {
-          alert("Registrasion Success");
+          // alert("Registrasion Success");
+          Swal.fire(
+            'Registrasion Success!',
+            'login to continue!',
+            'success'
+          )
           router.push("/login");
         }
       })

@@ -6,6 +6,7 @@ import Image from "next/image";
 import LOGO from "../assets/logo.png";
 import Input from "../components/input";
 import Button from "../components/button";
+import Swal from "sweetalert2";
 
 export default function Login() {
 
@@ -52,7 +53,12 @@ export default function Login() {
           setToken(token);
           router.push("/");
         }
-        alert(message);
+        // alert(message);
+        Swal.fire(
+          'Login Success!',
+          'welcome to my website!',
+          'success'
+        )
       })
       .catch((err) => {
         alert(err.toString());
