@@ -75,7 +75,7 @@ const Form = (props) => {
       .then((result) => {
         alert(result.message);
         if (result.status === "success") {
-          router.push(`/150/payment`);
+          router.push(`/${result.data.id}/payment`);
         }
       })
       .catch((error) => {

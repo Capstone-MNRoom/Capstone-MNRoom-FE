@@ -34,7 +34,7 @@ const ConfirmPayment = () => {
       .then((result) => {
         const allData = result.data;
         const findData = allData.find(
-          (obj) => obj.Rents.id === +router.query.id
+          (obj) => obj.id === +router.query.id
         );
         setRentData(findData);
       })
