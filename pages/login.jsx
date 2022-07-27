@@ -53,10 +53,9 @@ export default function Login() {
           setToken(token);
           router.push("/");
         }
-        // alert(message);
         Swal.fire(
           'Login Success!',
-          'welcome to my website!',
+          'welcome to MN Room!',
           'success'
         )
       })
