@@ -101,15 +101,15 @@ const Form = (props) => {
     } else {
       return (
         <Layout>
-          <div className="text-center font-bold text-3xl text-orange-400 pt-12 pb-12">
+          <div className="lg:text-4xl md:text-3xl text-2xl text-[#F97316] flex justify-center font-bold lg:my-16 md:my-15 my-10">
             <h1>Form Rent Room</h1>
           </div>
           <div className="container">
-            <div className="row">
-              <div className="col-6">
+            <div className="flex lg:flex-row md:flex-row flex-col w-full mb-52">
+              <div className="w-[45%] m-auto pb-10">
                 <img id="image_room" src={data.image_room} />
               </div>
-              <div className="col-6">
+              <div className="w-[45%] m-auto">
                 <h2 className="text-3xl font-bold">{data.hotel_name}</h2>
                 <h3 className="text-3xl text-base font-medium">{data.room_name}</h3>
                 <p className="text-2xl">{data.total_rental_price}</p>
@@ -175,10 +175,10 @@ const Form = (props) => {
                   </div>
                 </div>
                 <br />
-                <div className="text-end pb-10">
+                <div className="text-end my-14 w-full">
                   <Button
                     id="btn_rent"
-                    className=" bg-orange-600 hover:bg-orange-400 font-bold py-2 px-2 mb-3 rounded text-white"
+                    className="w-1/2 bg-orange-500 border border-white hover:shadow-md hover:shadow-gray-400 font-bold py-2 px-2 mb-3 rounded-md text-white"
                     label="Confirm"
                     onClick={() => handleConfirm()}
                   />
