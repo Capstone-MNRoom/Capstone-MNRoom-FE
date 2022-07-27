@@ -33,23 +33,23 @@ const Footer = () => {
               <TwitterIcon />
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-3 cursor-pointer">
             <h3 className="font-bold">Useful Links</h3>
             <br />
             <Link href="/Terms">
-              <p className="text-sm">Regulation</p>
+              <p className="text-sm hover:text-white/50">Regulation</p>
             </Link>
             <Link href="/profile">
-              <p className="text-sm pt-1">Profile</p>
+              <p className="text-sm hover:text-white/50 pt-1">Profile</p>
             </Link>
             <Link href="/">
-              <p className="text-sm pt-1">Workspace</p>
+              <p className="text-sm hover:text-white/50 pt-1">Workspace</p>
             </Link>
             <Link href="/">
-              <p className="text-sm pt-1">Hallroom</p>
+              <p className="text-sm hover:text-white/50 pt-1">Hallroom</p>
             </Link>
             <Link href="/">
-              <p className="text-sm pt-1">Ballroom</p>
+              <p className="text-sm hover:text-white/50 pt-1">Ballroom</p>
             </Link>
           </div>
           <div className="col-3">
