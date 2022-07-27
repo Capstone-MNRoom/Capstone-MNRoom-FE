@@ -1,4 +1,4 @@
-# Event Planning App
+# CAPSTONE PROJECT (MN ROOM)
 
 The purpose we built this project to compelete bootcamp task.
 
@@ -19,7 +19,7 @@ The purpose we built this project to compelete bootcamp task.
 - components: contain component to build pages
 - pages: list of pages
 - styles: contain style for pages
-- utils: contain configuration, context, and redux
+- utils: contain configuration and context
 
 
 # Build With:
